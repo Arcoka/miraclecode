@@ -1,0 +1,173 @@
+
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Biznest Unuja</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+
+    <!-- Favicons -->
+    <link href=" {% static 'assets/img/logo/logo.png' %}" rel="icon">
+    <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+    <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- font awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Federo&family=Lugrasimo&display=swap" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+    <!-- Main CSS File -->
+    <link rel="stylesheet" href="{% static 'assets/css/main.css' %}" >
+
+    <link rel="stylesheet" href="{% static 'assets/css/news.css' %}">
+    
+    
+
+
+    <!-- =======================================================
+  * Template Name: Append
+  * Template URL: https://bootstrapmade.com/append-bootstrap-website-template/
+  * Updated: Aug 07 2024 with Bootstrap v5.3.3
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body class="{% block body_class %}index-page{% endblock %}">
+
+    <header id="header" class="header d-flex align-items-center fixed-top">
+        <div class="container position-relative d-flex align-items-center justify-content-between">
+
+            <div class="header-logo">
+                <a href="#"><img src="{% static 'assets/img/logo/inbis_logo.png' %}" class="footer-logo" alt="Footer Logo" width="150"
+                        height="50"></a>
+            </div>
+
+            <nav id="navmenu" class="navmenu">
+                
+                {% include "navbar.html" %}
+
+                <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+            </nav>
+
+        </div>
+    </header>
+
+    {% block content %}
+
+    {% endblock content %}
+
+
+    <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <a href="index.html" class="logo d-flex align-items-center">
+          <img src="{% static 'assets/img/logo/inbis_logo.png' %}" alt="Logo" class="img-fluid" style="max-height: 40px;">
+        </a>
+        <p style="color: #d1d7dc;">Kami berkomitmen untuk memberikan pengalaman terbaik dan solusi inovatif untuk
+          membantu Anda mencapai tujuan.
+          Mari berkolaborasi untuk masa depan yang lebih cerah.</p>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <h3 style="color: #6b88a0;">Layanan</h3>
+        <a href="#">Inkubasi Startup</a>
+        <a href="#">Konsultasi Bisnis</a>
+        <a href="#">Akses Investor</a>
+        <a href="#">Program Pelatihan</a>
+      </div>
+
+      <div class="footer-contact">
+        <h3 style="color: #667e92;">Hubungi Kami</h3>
+        <div class="contact-info">
+          <i class="fas fa-map-marker-alt"></i>
+          <div>Jl. PP Nurul Jadid Pox Box 1,<br> Karanganyar, Paiton, Probolinggo,<br> Jawa Timur, Indonesia.</div>
+        </div>
+        <div class="contact-info">
+          <i class="fas fa-phone"></i>
+          <div>+62 21 555 1234</div>
+        </div>
+        <div class="contact-info">
+          <i class="fas fa-envelope"></i>
+          <div>info@pusatbisnisinnovate.com</div>
+        </div>
+      </div>
+
+      <!-- Tambahkan div ini untuk logo Kampus Merdeka -->
+      <div class="footer-merdeka"
+        style="display: flex; flex-direction: column; justify-content: center; gap: 10px; margin-left: 20px;">
+        <img src="{% static 'assets/img/kampus-merdeka.png' %}" alt="Merdeka Belajar" style="height: 110px;">
+      </div>
+
+      <!-- Footer Bottom -->
+      <div class="footer-bottom" style="
+  text-align: center;
+  padding-top: 20px;
+  margin-top: 30px;
+  border-top: 1px solid #444;
+  font-size: 14px;
+  color: #bbbbbb;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  letter-spacing: 0.5px;
+">
+        © 2025 <strong>Pusat Bisnis UNUJA</strong>. All Rights Reserved.
+      </div>
+
+    </div>
+  </footer>
+
+    
+
+
+
+
+    <!-- Scroll Top -->
+    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i
+            class="bi bi-arrow-up-short"></i></a>
+
+    <!-- Preloader -->
+    <div id="preloader"></div>
+
+    <!-- Vendor JS Files -->
+    <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
+    <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
+    <script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/purecounter/purecounter_vanilla.js' %}"></script>
+    <script src="{% static 'assets/vendor/imagesloaded/imagesloaded.pkgd.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+    <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
+
+
+    <!-- Main JS File -->
+    <script src="{% static 'assets/js/main.js' %}"></script>
+
+    <!-- font awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+
+</body>
+
+</html>

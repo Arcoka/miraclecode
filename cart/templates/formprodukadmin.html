@@ -1,0 +1,149 @@
+{% extends "baseadmin.html" %}
+{% load static %}
+{% block content %}
+
+<style>
+  .container {
+    max-width: 800px;
+    margin: 40px auto;
+    font-family: Arial, sans-serif;
+  }
+  .card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    overflow: hidden;
+  }
+  .card-header {
+    padding: 20px;
+    border-bottom: 1px solid #f0f0f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f7f7f7;
+  }
+  .card-header h4 {
+    margin: 0;
+    font-size: 1.2rem;
+  }
+  .card-header a {
+    background: #eee;
+    color: #333;
+    padding: 6px 12px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+  .card-header a:hover {
+    background: #ddd;
+  }
+  .card-body {
+    padding: 30px 20px;
+  }
+  label {
+    font-weight: bold;
+    margin-bottom: 6px;
+    display: block;
+  }
+  input[type="text"],
+  input[type="file"],
+  select,
+  textarea {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    margin-bottom: 20px;
+  }
+  .input-group {
+    display: flex;
+  }
+  .input-group span {
+    background: #eee;
+    padding: 10px 14px;
+    border: 1px solid #ccc;
+    border-right: none;
+    border-radius: 6px 0 0 6px;
+  }
+  .input-group input {
+    border-left: none;
+    border-radius: 0 6px 6px 0;
+    flex: 1;
+  }
+  .form-check {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .btn-primary {
+    background: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  .btn-primary:hover {
+    background: #45a049;
+  }
+</style>
+
+<div class="container">
+  <div class="card">
+    <div class="card-header">
+      <h4>Tambah Produk Baru</h4>
+      <a href="{% url 'produkadmin' %}">Kembali</a>
+    </div>
+    <div class="card-body">
+      <form method="POST" action="{% url 'formprodukadmin' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <label for="nama">Nama Produk</label>
+        <input type="text" id="nama" name="nama" required>
+
+        <label for="kategori">Kategori</label>
+        <select id="kategori" name="kategori">
+          <option value="">-- Pilih Kategori --</option>
+          {% for kategori in kategoripenjualan %}
+          <option value="{{ kategori.id }}">{{ kategori.nama }}</option>
+          {% endfor %}
+        </select>
+
+        <label for="deskripsi">Deskripsi</label>
+        <textarea id="deskripsi" name="deskripsi" rows="4"></textarea>
+
+        <label for="harga">Harga</label>
+        <div class="input-group">
+          <span>Rp</span>
+          <input type="text" id="harga" name="harga" required>
+        </div>
+
+        <label for="gambar">Gambar Produk</label>
+        <input type="file" id="gambar" name="gambar" required>
+
+        <div class="form-check">
+          <input type="checkbox" id="aktif" name="aktif" checked>
+          <label for="aktif">Aktif</label>
+        </div>
+
+        <button type="submit" class="btn-primary">Simpan</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  {% if 'ckeditor' in INSTALLED_APPS %}
+  document.addEventListener('DOMContentLoaded', function() {
+    if (document.getElementById('deskripsi')) {
+      CKEDITOR.replace('deskripsi');
+    }
+  });
+  {% endif %}
+</script>
+{% endblock %}

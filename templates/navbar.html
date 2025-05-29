@@ -1,0 +1,55 @@
+<ul class="nav-menu flex items-center space-x-4">
+    <li><a href="{% url "home" %}" class="active">Beranda</a></li>
+
+    <!-- Profile Dropdown -->
+    <li class="dropdown">
+        <a href="#"><span>Profile</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+        <ul class="dropdown-menu">
+            <li><a href="{% url "profil" %}">Tentang Kami</a></li>
+            <li><a href="{% url "visimisi" %}">Visi & Misi</a></li>
+            <a href="index.html" class="block text-gray-600">Club Wirausaha</a>
+            <li><a href="struktur.html">Struktur</a></li>
+            <li><a href="{% url "sejarah" %}">Sejarah</a></li>
+            <li><a href="{% url "berita_list" %}">Berita</a></li>
+
+        </ul>
+    </li>
+
+    <!-- Inkubator Bisnis Dropdown -->
+    <li class="dropdown">
+        <a href="#"><span>Inkubator Bisnis</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+        <ul class="dropdown-menu">
+            <li><a href="{% url "modelinkubasi" %}">Model Inkubasi</a></li>
+            <li><a href="{% url "seleksi" %}">Prosedur Seleksi</a></li>
+            <li><a href="{% url "tenantinkubator" %}">Tenant Inkubator</a></li>
+            <li><a href="{% url "daftar_tenant" %}">Daftar Menjadi Tenant</a></li>
+        </ul>
+    </li>
+
+    <!-- Layanan Bisnis Dropdown -->
+    <li class="dropdown">
+        <a href="#"><span>Layanan Bisnis</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+        <ul class="dropdown-menu">
+            <li><a href="{% url "jenislayanan" %}">Jenis Layanan</a></li>
+            <li><a href="{% url "submit_layanan" %}">Daftar Layanan</a></li>
+            <li><a href="{% url "penjualan" %}">Toko UNUJA</a></li>
+        </ul>
+    </li>
+
+    <li><a href="{% url "faq" %}">FAQ</a></li>
+    <li><a href="{% url "kontak" %}">Hubungi Kami</a></li>
+
+    <!-- Authentication Menu -->
+    {% if user.is_authenticated %}
+    <li class="text-gray-800"><i class="fa fa-user"></i> Hai, <b>{{ request.user }}</b></li>
+   <li>
+  <a href="{% url 'logout' %}" class="hover:text-gray-500 font-bold text-lg">
+    <i class="fas fa-sign-out-alt" style="font-size: 24px;"></i>
+  </a>
+</li>
+
+
+    {% else %}
+    <li><a href="{% url 'login' %}" class="hover:text-gray-500 font-bold text-lg">Login</a></li>
+    {% endif %}
+</ul>

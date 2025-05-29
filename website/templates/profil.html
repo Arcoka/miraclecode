@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% load static %}
+{% block body_class %}index-page{% endblock %}
+{% block content %}
+
+{% for row in slide  %}
+
+   <div class=" hero-pilihan">
+        <div class="hero-content">
+             
+            <!-- <a href="#" class="hero-button">Mulai Sekarang</a> -->
+            
+            <!-- Animasi latar belakang yang lebih profesional -->
+            <div class="particles">
+                <div class="particle" style="top: 20%; left: 10%; animation-delay: 0s;"></div>
+                <div class="particle" style="top: 30%; left: 25%; animation-delay: 2s;"></div>
+                <div class="particle" style="top: 50%; left: 15%; animation-delay: 4s;"></div>
+                <div class="particle" style="top: 70%; left: 20%; animation-delay: 1s;"></div>
+                <div class="particle" style="top: 80%; left: 40%; animation-delay: 3s;"></div>
+                <div class="particle" style="top: 40%; left: 60%; animation-delay: 5s;"></div>
+                <div class="particle" style="top: 60%; left: 50%; animation-delay: 0s;"></div>
+                <div class="particle" style="top: 10%; left: 50%; animation-delay: 2s;"></div>
+                <div class="particle" style="top: 30%; left: 70%; animation-delay: 1s;"></div>
+                <div class="particle" style="top: 60%; left: 80%; animation-delay: 3s;"></div>
+            </div>
+            
+            <div class="wave wave-1"></div>
+            <div class="wave wave-2"></div>
+            <div class="wave wave-3"></div>
+            
+            <!-- Dekorasi lingkaran dengan animasi -->
+            <div class="circle-decoration circle-1"></div>
+            <div class="circle-decoration circle-2"></div>
+        </div>
+        
+        <div class="hero-image-container">
+            <img src="{{ row.gambar_slide.url }}" alt="Gedung Bisnis Modern" class="hero-image">
+        </div>
+    </div>
+
+    {% endfor %}
+
+        <!-- Section Title -->
+        <div class="container section-title" style="margin-top: 80px;" data-aos="fade-up">
+            <h2>Tentang Kami</h2>
+            <p>Club Wirausaha Universitas Nurul Jadid</p>
+        </div><!-- End Section Title -->
+
+<section id="features" class="features section">
+
+    <div class="container">
+        {% for row in profil %}
+        <div class="row gy-4 align-items-center features-item">
+            <div class="col-lg-5 order-2 order-lg-1" data-aos="fade-up" data-aos-delay="200">
+                <h3>{{ row.judul }}</h3>
+                <p>
+                    {{ row.deskripsi|safe }}
+                </p>
+                <a href="tentangkami.html" class="cta-btn">Lebih Banyak Tentang Kami</a>
+            </div>
+            <style>
+                .cta-btn {
+                    font-family: var(--heading-font);
+                    font-weight: 500;
+                    font-size: 18px;
+                    letter-spacing: 1px;
+                    display: inline-block;
+                    padding: 12px 30px;
+                    border-radius: 5px;
+                    transition: 0.5s;
+                    margin: 10px;
+                    border: 2px solid var(--accent-color);
+                    color: var(--accent-color);
+                }
+
+                .cta-btn:hover {
+                    background: rgb(26, 24, 24);
+                    border: 2px solid var(--contrast-color);
+                }
+            </style>
+            <div class="col-lg-7 order-1 order-lg-2 d-flex flex-wrap align-items-center" data-aos="zoom-out"
+                data-aos-delay="100">
+                <div class="image-stack">
+                    <img src="{{ row.gambar.url }}" alt="" class="stack-front">
+                    <img src="{{ row.gambar_2.url }}" alt="" class="stack-back">
+                </div>
+            </div>
+        </div><!-- Features Item -->
+        {% endfor %}
+    </div>
+
+</section><!-- /Features Section -->
+{% endblock content %}

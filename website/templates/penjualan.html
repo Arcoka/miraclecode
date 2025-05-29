@@ -1,0 +1,310 @@
+{% extends "base.html" %}
+{% load static %}
+{% block body_class %}toko-page{% endblock %}
+{% block content %}
+
+
+<div class="main-container">
+   
+    <div class="slider-container">
+         
+        <div class="slides-wrapper">
+            {% for row in slidepenjualan  %}
+            <!-- Slide 1 -->
+            <div class="slide">
+                <div class="content-1">
+                    <div class="accent-blob" style="top: -150px; left: -150px;"></div>
+                    <!-- <div class="tag">PRODUK POPULER</div> -->
+                    <h2>{{ row.judul|safe }}</h2>
+                    <p class="p1">{{ row.deskripsi|safe }}</p>
+                    <a href="#" class="btnn">Detail</a>
+                </div>
+                <div class="image-container">
+                    <div class="accent-blob" style="bottom: -100px; right: -80px;"></div>
+                    <div class="image-frame">
+                        <img class="product-image" src="{{ row.gambar.url }}" alt="Produk Premium T-Shirt" />
+                    </div>
+                </div>
+            </div>
+            <div class="slide">
+                <div class="content-1">
+                    <div class="accent-blob" style="top: -150px; left: -150px;"></div>
+                    <!-- <div class="tag">PRODUK POPULER</div> -->
+                    <h1>{{ row.judul|safe }}</h1>
+                    <p class="p1">{{ row.deskripsi|safe }}</p>
+                    <a href="#" class="btnn">Detail</a>
+                </div>
+                <div class="image-container">
+                    <div class="accent-blob" style="bottom: -100px; right: -80px;"></div>
+                    <div class="image-frame">
+                        <img class="product-image" src="{{ row.gambar.url }}" alt="Produk Premium T-Shirt" />
+                    </div>
+                </div>
+            </div>
+             {% endfor %}
+        </div>
+        
+        <div class="nav-arrow prev">
+            <svg class="arrow-icon" viewBox="0 0 24 24">
+                <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
+            </svg>
+        </div>
+        <div class="nav-arrow next">
+            <svg class="arrow-icon" viewBox="0 0 24 24">
+                <path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z" />
+            </svg>
+        </div>
+
+        <div class="slide-indicators">
+            <div class="indicator active" data-index="0"></div>
+            <div class="indicator" data-index="1"></div>
+            <div class="indicator" data-index="2"></div>
+        </div>
+        
+    </div>
+     
+</div>
+
+
+
+<!-- Section Title -->
+<div class="container section-title" style="margin-top: 40px;" data-aos="fade-up">
+    <h2>Toko UNUJA</h2>
+</div><!-- End Section Title -->
+
+<div class="container-sld">
+    {% for row in jasa  %}
+    <div>
+        <img src="{{ row.gambar.url }}" class="img-sld" alt="placeholder" />
+        <a href="{{ row.gambar.url }}" title={{ row.deskripsi|safe }} class="glightbox preview-link"
+            data-gallery="portfolio-gallery-app"><i class="bi bi-zoom-in"></i></a>
+    </div>
+    {% endfor %}
+</div>
+
+<!-- Toko UNUJA Section -->
+<section id="portfolio" class="portfolio section">
+    <div class="container section-title" data-aos="fade-up">
+        <h2>Produk</h2>
+
+    </div><!-- End Section Title -->
+
+    <div class="container">
+        <div class="isotope-layout" data-default-filter="*" data-layout="fitRows" data-sort="original-order">
+            <ul class="portfolio-filters isotope-filters" data-aos="fade-up" data-aos-delay="100">
+                <li data-filter="*" class="filter-active">Semua</li>
+                {% for kategori in kategoripenjualan %}
+                <li data-filter=".filter-{{ kategori.slug }}">{{ kategori.nama }}</li>
+                {% endfor %}
+            </ul><!-- End Portfolio Filters -->
+
+            <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
+                {% for row in produk %}
+                <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-{{ row.kategoripenjualan.slug }}">
+                    <div class="portfolio-wrap">
+                        <img src="{{ row.gambar.url }}" class="img-fluid" alt="{{ row.nama }}">
+                        <div class="portfolio-info">
+                            <h4>{{ row.nama }}</h4>
+                            <p>{{ row.deskripsi|safe }}</p>
+                            <p>{{ row.harga }}</p>
+
+                            <a href="{{ row.gambar.url }}" title="Management System"
+                                data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i
+                                    class="bi bi-zoom-in"></i></a>
+                            <a href="#" title="More Details" class="details-link"><i
+                                    class="bi bi-link-45deg"></i></a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+
+    {% block extra_js %}
+    <script>
+        $(document).ready(function () {
+            // Isotope initialization with jQuery
+            var $grid = $('.isotope-container').isotope({
+                itemSelector: '.isotope-item',
+                layoutMode: 'fitRows'
+            });
+
+            // Filter items on button click
+            $('.isotope-filters').on('click', 'li', function () {
+                var filterValue = $(this).attr('data-filter');
+                $grid.isotope({
+                    filter: filterValue
+                });
+
+                // Change active class
+                $('.isotope-filters li').removeClass('filter-active');
+                $(this).addClass('filter-active');
+            });
+        });
+    </script>
+    {% endblock %}
+
+
+    {% comment %} <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
+        <div class="portfolio-wrap">
+            <img src="assets/img/JASA/Absen Pintar.jpg" class="img-fluid" alt="Absen Pintar">
+            <div class="portfolio-info">
+                <h4>Absen Pintar</h4>
+                <p>Sistem absensi digital modern untuk institusi pendidikan dan perkantoran</p>
+                <a href="assets/img/JASA/Absen Pintar.jpg" title="Absen Pintar" data-gallery="portfolio-gallery-app"
+                    class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                <a href="portfolio-details.html" title="More Details" class="details-link"><i
+                        class="bi bi-link-45deg"></i></a>
+            </div>
+        </div>
+    </div> {% endcomment %}
+
+    <!-- Tambahan Jasa Items -->
+    {% comment %} <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
+        <div class="portfolio-wrap">
+            <img src="assets/img/JASA/A'mal yaum.jpg" class="img-fluid" alt="Jasa Desain">
+            <div class="portfolio-info">
+                <h4>Jasa Desain</h4>
+                <p>Layanan desain grafis profesional untuk berbagai kebutuhan pemasaran dan branding</p>
+                <a href="assets/img/JASA/A'mal yaum.jpg" title="Jasa Desain" data-gallery="portfolio-gallery-app"
+                    class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                <a href="portfolio-details.html" title="More Details" class="details-link"><i
+                        class="bi bi-link-45deg"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
+        <div class="portfolio-wrap">
+            <img src="assets/img/JASA/Absen Pintar.jpg" class="img-fluid" alt="Konsultasi IT">
+            <div class="portfolio-info">
+                <h4>Konsultasi IT</h4>
+                <p>Layanan konsultasi untuk kebutuhan teknologi informasi dan digitalisasi bisnis</p>
+                <a href="assets/img/JASA/Absen Pintar.jpg" title="Konsultasi IT" data-gallery="portfolio-gallery-app"
+                    class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                <a href="portfolio-details.html" title="More Details" class="details-link"><i
+                        class="bi bi-link-45deg"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
+        <div class="portfolio-wrap">
+            <img src="assets/img/JASA/Kasir.jpg" class="img-fluid" alt="Jasa Pengetikan">
+            <div class="portfolio-info">
+                <h4>Jasa Pengetikan</h4>
+                <p>Layanan pengetikan profesional untuk dokumen penting dan tugas akademik</p>
+                <a href="assets/img/JASA/Kasir.jpg" title="Jasa Pengetikan" data-gallery="portfolio-gallery-app"
+                    class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                <a href="portfolio-details.html" title="More Details" class="details-link"><i
+                        class="bi bi-link-45deg"></i></a>
+            </div>
+        </div>
+    </div> {% endcomment %}
+
+    <!-- Barang Items -->
+    {% comment %} <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
+        <div class="portfolio-wrap">
+            <img src="assets/img/masonry-portfolio/masonry-portfolio-2.jpg" class="img-fluid" alt="Produk 1">
+            <div class="portfolio-info">
+                <h4>Produk 1</h4>
+                <p>Barang berkualitas dari UNUJA</p>
+                <a href="assets/img/masonry-portfolio/masonry-portfolio-2.jpg" title="Produk 1"
+                    data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i
+                        class="bi bi-zoom-in"></i></a>
+                <a href="portfolio-details.html" title="More Details" class="details-link"><i
+                        class="bi bi-link-45deg"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
+        <div class="portfolio-wrap">
+            <img src="assets/img/masonry-portfolio/masonry-portfolio-5.jpg" class="img-fluid" alt="Produk 2">
+            <div class="portfolio-info">
+                <h4>Produk 2</h4>
+                <p>Barang berkualitas dari UNUJA</p>
+                <a href="assets/img/masonry-portfolio/masonry-portfolio-5.jpg" title="Produk 2"
+                    data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i
+                        class="bi bi-zoom-in"></i></a>
+                <a href="portfolio-details.html" title="More Details" class="details-link"><i
+                        class="bi bi-link-45deg"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
+        <div class="portfolio-wrap">
+            <img src="assets/img/masonry-portfolio/masonry-portfolio-8.jpg" class="img-fluid" alt="Produk 3">
+            <div class="portfolio-info">
+                <h4>Produk 3</h4>
+                <p>Barang berkualitas dari UNUJA</p>
+                <a href="assets/img/masonry-portfolio/masonry-portfolio-8.jpg" title="Produk 3"
+                    data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i
+                        class="bi bi-zoom-in"></i></a>
+                <a href="portfolio-details.html" title="More Details" class="details-link"><i
+                        class="bi bi-link-45deg"></i></a>
+            </div>
+        </div>
+    </div> {% endcomment %}
+
+    <!-- Makanan Items -->
+    {% comment %} <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
+        <div class="portfolio-wrap">
+            <img src="assets/img/masonry-portfolio/masonry-portfolio-3.jpg" class="img-fluid" alt="Makanan 1">
+            <div class="portfolio-info">
+                <h4>Makanan 1</h4>
+                <p>Makanan lezat dari UNUJA</p>
+                <a href="assets/img/masonry-portfolio/masonry-portfolio-3.jpg" title="Makanan 1"
+                    data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i
+                        class="bi bi-zoom-in"></i></a>
+                <a href="portfolio-details.html" title="More Details" class="details-link"><i
+                        class="bi bi-link-45deg"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
+        <div class="portfolio-wrap">
+            <img src="assets/img/masonry-portfolio/masonry-portfolio-6.jpg" class="img-fluid" alt="Makanan 2">
+            <div class="portfolio-info">
+                <h4>Makanan 2</h4>
+                <p>Makanan lezat dari UNUJA</p>
+                <a href="assets/img/masonry-portfolio/masonry-portfolio-6.jpg" title="Makanan 2"
+                    data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i
+                        class="bi bi-zoom-in"></i></a>
+                <a href="portfolio-details.html" title="More Details" class="details-link"><i
+                        class="bi bi-link-45deg"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
+        <div class="portfolio-wrap">
+            <img src="assets/img/masonry-portfolio/masonry-portfolio-9.jpg" class="img-fluid" alt="Makanan 3">
+            <div class="portfolio-info">
+                <h4>Makanan 3</h4>
+                <p>Makanan lezat dari UNUJA</p>
+                <a href="assets/img/masonry-portfolio/masonry-portfolio-9.jpg" title="Makanan 3"
+                    data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i
+                        class="bi bi-zoom-in"></i></a>
+                <a href="portfolio-details.html" title="More Details" class="details-link"><i
+                        class="bi bi-link-45deg"></i></a>
+            </div>
+        </div>
+    </div> {% endcomment %}
+    </div><!-- End Portfolio Container -->
+    </div>
+    </div>
+</section><!-- End Portfolio Section -->
+
+<div class="penilaian">
+    <button class="tombol-penilaian">Beri Penilaian</button>
+</div>
+</main>
+
+
+
+{% endblock content %}

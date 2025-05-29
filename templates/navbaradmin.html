@@ -1,0 +1,188 @@
+
+<nav class="space-y-2 w-full h-screen overflow-y-auto text-sm px-2 py-2">
+    <!-- Dashboard -->
+    <a href="{% url 'berandaadmin' %}" class="flex items-center space-x-2 p-1.5 rounded-md {% if menu == 'beranda' %}bg-gray-700{% endif %} hover:bg-gray-700 transition">
+        <i class="fas fa-tachometer-alt text-blue-400 text-xs"></i>
+        <span class="{% if menu == 'beranda' %}font-semibold{% endif %}">Dashboard</span>
+    </a>
+
+    <!-- User -->
+    {% comment %} <a href="{% url 'active_users' %}" class="flex items-center space-x-2 p-1.5 rounded-md hover:bg-gray-700 transition">
+        <i class="fas fa-user text-white text-sm"></i>
+        <span>User</span>
+    </a> {% endcomment %}
+
+    <a href="{% url 'active_users' %}" class="flex items-center space-x-2 p-1.5 rounded-md hover:bg-gray-700 transition">
+    <i class="fas fa-user text-white text-sm"></i>
+    <span>User</span>
+</a>
+
+    <!-- Slide -->
+    <a href="{% url 'slideadmin' %}" class="flex items-center space-x-2 p-1.5 rounded-md {% if menu == 'slide' %}bg-gray-700{% endif %} hover:bg-gray-700 transition">
+        <i class="fas fa-images text-yellow-200 text-xs"></i>
+        <span>Slide</span>
+    </a>
+
+    <!-- Profil -->
+    <a href="{% url 'profiladmin' %}" class="flex items-center space-x-2 p-1.5 rounded-md {% if menu == 'profil' %}bg-gray-700{% endif %} hover:bg-gray-700 transition">
+        <i class="fas fa-user text-green-200 text-xs"></i>
+        <span>Profil</span>
+    </a>
+
+    <!-- Pekerjaan -->
+    <a href="{% url 'pekerjaanadmin' %}" class="flex items-center space-x-2 p-1.5 rounded-md {% if menu == 'pekerjaan' %}bg-gray-700{% endif %} hover:bg-gray-700 transition">
+        <i class="fas fa-briefcase text-red-100 text-xs"></i>
+        <span>Pekerjaan</span>
+    </a>
+
+    <!-- Team -->
+    <a href="{% url 'teamadmin' %}" class="flex items-center space-x-2 p-1.5 rounded-md {% if menu == 'team' %}bg-gray-700{% endif %} hover:bg-gray-700 transition">
+        <i class="fas fa-users text-xs" style="color: #D2B48C;"></i>
+        <span>Team</span>
+    </a>
+
+    <!-- Background -->
+    <a href="{% url 'bagroundadmin' %}" class="flex items-center space-x-2 p-1.5 rounded-md {% if menu == 'background' %}bg-gray-700{% endif %} hover:bg-gray-700 transition">
+        <i class="fas fa-image text-xs" style="color:rgb(104, 110, 188);"></i>
+        <span>Background</span>
+    </a>
+
+    <!-- Testimoni -->
+    <a href="{% url 'testimoniadmin' %}" class="flex items-center space-x-2 p-1.5 rounded-md {% if menu == 'komentar' %}bg-gray-700{% endif %} hover:bg-gray-700 transition">
+        <i class="fas fa-comments text-xs"></i>
+        <span>Testimoni</span>
+    </a>
+
+    <!-- Visi Misi -->
+    <a href="{% url 'visimisiadmin' %}" class="flex items-center space-x-2 p-1.5 rounded-md {% if menu == 'visi_misi' %}bg-gray-700{% endif %} hover:bg-gray-700 transition">
+        <i class="fas fa-bullseye text-xs" style="color:rgb(221, 97, 97);"></i>
+        <span>Visi & Misi</span>
+    </a>
+
+    <!-- Struktur -->
+    <a href="{% url 'kategoriadmin' %}" class="flex items-center space-x-2 p-1.5 rounded-md hover:bg-gray-700 transition">
+        <i class="fas fa-sitemap text-xs"></i>
+        <span>Struktur</span>
+    </a>
+    <a href="{% url 'kategoriadmin' %}" class="flex items-center space-x-2 p-1.5 rounded-md hover:bg-gray-700 transition">
+        <i class="fas fa-sitemap text-xs"></i>
+        <span>Prosedur Seleksi</span>
+    </a>
+    <a href="{% url 'kategoriadmin' %}" class="flex items-center space-x-2 p-1.5 rounded-md hover:bg-gray-700 transition">
+        <i class="fas fa-sitemap text-xs"></i>
+        <span>Tenant</span>
+    </a>
+    <a href="{% url 'kategoriadmin' %}" class="flex items-center space-x-2 p-1.5 rounded-md hover:bg-gray-700 transition">
+        <i class="fas fa-sitemap text-xs"></i>
+        <span>Pendaftaran</span>
+    </a>
+
+    <!-- Model Inkubasi -->
+    <a href="{% url 'modelinkubasiadmin' %}" class="flex items-center space-x-2 p-1.5 rounded-md {% if menu == 'modelinkubasi' %}bg-gray-700{% endif %} hover:bg-gray-700 transition">
+        <i class="fas fa-seedling text-green-500 text-xs"></i>
+        <span>Model Inkubasi</span>
+    </a>
+
+    <!-- FAQ -->
+    <a href="{% url 'faqadmin' %}" class="flex items-center space-x-2 p-1.5 rounded-md {% if menu == 'faq' %}bg-gray-700{% endif %} hover:bg-gray-700 transition">
+        <i class="fas fa-question-circle text-xs"></i>
+        <span>FAQ</span>
+    </a>
+
+    <!-- Kategori -->
+    <a href="{% url 'kategoriadmin' %}" class="flex items-center space-x-2 p-1.5 rounded-md {% if menu == 'kategori' %}bg-gray-700{% endif %} hover:bg-gray-700 transition">
+        <i class="fas fa-calendar text-xs" style="color:rgb(175, 246, 220);"></i>
+        <span>Kategori</span>
+    </a>
+
+    <!-- Berita -->
+    <a href="{% url 'beritaadmin' %}" class="flex items-center space-x-2 p-1.5 rounded-md {% if menu == 'berita' %}bg-gray-700{% endif %} hover:bg-gray-700 transition">
+        <i class="fas fa-newspaper text-xs" style="color:rgb(34, 38, 172);"></i>
+        <span>Berita</span>
+    </a>
+
+    <!-- Galeri -->
+    <a href="{% url 'galeriadmin' %}" class="flex items-center space-x-2 p-1.5 rounded-md {% if menu == 'galeri' %}bg-gray-700{% endif %} hover:bg-gray-700 transition">
+        <i class="fas fa-file-image text-xs" style="color:rgb(228, 11, 240);"></i>
+        <span>Galeri</span>
+    </a>
+
+    <!-- Layanan -->
+    <a href="{% url 'layananadmin' %}" class="flex items-center space-x-2 p-1.5 rounded-md {% if menu == 'layanan' %}bg-gray-700{% endif %} hover:bg-gray-700 transition">
+        <i class="fas fa-hands-helping text-xs" style="color:rgb(11, 211, 8);"></i>
+        <span>Layanan</span>
+    </a>
+
+    <!-- Pesan -->
+    <a href="{% url 'pesan_list' %}" class="flex items-center space-x-2 p-1.5 rounded-md {% if menu == 'pesan' %}bg-gray-700{% endif %} hover:bg-gray-700 transition">
+        <i class="fas fa-envelope text-xs text-cyan-600"></i>
+        <span>Pesan</span>
+        {% if belum_dibaca > 0 %}
+        <span class="ml-auto bg-red-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full">{{ belum_dibaca }}</span>
+        {% endif %}
+    </a>
+
+    <!-- DaftarTenant -->
+    <a href="{% url 'daftartenant_list' %}" class="flex items-center space-x-2 p-1.5 rounded-md {% if menu == 'daftartenant' %}bg-gray-700{% endif %} hover:bg-gray-700 transition">
+        <i class="fas fa-envelope text-blue-200 text-xs"></i>
+        <span>DaftarTenant</span>
+        {% if belum_dibaca > 0 %}
+        <span class="ml-auto bg-red-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full">{{ belum_dibaca }}</span>
+        {% endif %}
+    </a>
+    <!-- DaftarTenant -->
+    <a href="{% url 'admin_daftar_layanan' %}" class="flex items-center space-x-2 p-1.5 rounded-md {% if menu == 'daftartenant' %}bg-gray-700{% endif %} hover:bg-gray-700 transition">
+        <i class="fas fa-concierge-bell text-blue-200 text-xs"></i>
+        <span>DaftarLayanan</span>
+        {% if belum_dibaca > 0 %}
+        <span class="ml-auto bg-red-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full">{{ belum_dibaca }}</span>
+        {% endif %}
+    </a>
+    <!-- DaftarTenant -->
+    {% comment %} <a href="{% url 'daftarlayanan_list' %}" class="flex items-center space-x-2 p-1.5 rounded-md {% if menu == 'daftartenant' %}bg-gray-700{% endif %} hover:bg-gray-700 transition">
+        <i class="fas fa-envelope text-blue-200 text-xs"></i>
+        <span>DaftarLayanan</span>
+        {% if belum_dibaca > 0 %}
+        <span class="ml-auto bg-red-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full">{{ belum_dibaca }}</span>
+        {% endif %}
+    </a> {% endcomment %}
+
+    <!-- Komentar -->
+    <a href="{% url 'komentar_list' %}" class="flex items-center space-x-2 p-1.5 rounded-md {% if menu == 'komentar' %}bg-gray-700{% endif %} hover:bg-gray-700 transition">
+        <i class="fas fa-envelope text-xs text-cyan-600"></i>
+        <span>Komentar</span>
+        {% if belum_dilihat > 0 %}
+        <span class="ml-auto bg-red-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full">{{ belum_dilihat }}</span>
+        {% endif %}
+    </a>
+
+    <!-- Kontak -->
+    <a href="{% url 'kontakadmin' %}" class="flex items-center space-x-2 p-1.5 rounded-md {% if menu == 'kontak' %}bg-gray-700{% endif %} hover:bg-gray-700 transition">
+        <i class="fas fa-address-book text-xs text-cyan-600"></i>
+        <span>Kontak</span>
+    </a>
+
+    <!-- Dashboard Penjualan & Submenu -->
+    <a href="{% url 'berandapenjualan' %}" class="flex items-center space-x-2 p-1.5 rounded-md {% if menu == 'penjualan' %}bg-gray-700{% endif %} hover:bg-gray-700 transition">
+        <i class="fas fa-shopping-cart text-xs text-orange-600"></i>
+        <span>Penjualan</span>
+    </a>
+    <!-- Submenu Penjualan -->
+    <div class="ml-4 space-y-1">
+        <a href="{% url 'slidepenjualanadmin' %}" class="flex items-center space-x-2 text-xs p-1 hover:bg-gray-700 {% if submenu == 'slidepenjualanadmin' %}bg-gray-700{% endif %}">
+            <i class="fas fa-images text-xs text-pink-400"></i><span>Slide</span>
+        </a>
+        <a href="{% url 'pemesananadmin' %}" class="flex items-center space-x-2 text-xs p-1 hover:bg-gray-700 {% if submenu == 'pemesanan' %}bg-gray-700{% endif %}">
+            <i class="fas fa-shopping-basket text-blue-400 text-xs"></i><span>Pemesanan</span>
+        </a>
+        <a href="{% url 'jasaadmin' %}" class="flex items-center space-x-2 text-xs p-1 hover:bg-gray-700 {% if submenu == 'jasa' %}bg-gray-700{% endif %}">
+            <i class="fas fa-fire text-red-500 text-xs"></i><span>Jasa</span>
+        </a>
+        <a href="{% url 'kategoripenjualanadmin' %}" class="flex items-center space-x-2 text-xs p-1 hover:bg-gray-700 {% if submenu == 'kategoripenjualanadmin' %}bg-gray-700{% endif %}">
+            <i class="fas fa-list text-green-500 text-xs"></i><span>Kategori</span>
+        </a>
+        <a href="{% url 'produkadmin' %}" class="flex items-center space-x-2 text-xs p-1 hover:bg-gray-700 {% if submenu == 'produk' %}bg-gray-700{% endif %}">
+            <i class="fas fa-box-open text-xs text-yellow-300"></i><span>Produk</span>
+        </a>
+    </div>
+</nav>

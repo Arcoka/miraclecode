@@ -1,0 +1,162 @@
+{% extends "base.html" %}
+{% load static %}
+{% block body_class %}index-page{% endblock %}
+{% block content %}
+
+{% for row in slide  %}
+
+<div class=" hero-pilihan">
+    <div class="hero-content">
+
+        <!-- <a href="#" class="hero-button">Mulai Sekarang</a> -->
+
+        <!-- Animasi latar belakang yang lebih profesional -->
+        <div class="particles">
+            <div class="particle" style="top: 20%; left: 10%; animation-delay: 0s;"></div>
+            <div class="particle" style="top: 30%; left: 25%; animation-delay: 2s;"></div>
+            <div class="particle" style="top: 50%; left: 15%; animation-delay: 4s;"></div>
+            <div class="particle" style="top: 70%; left: 20%; animation-delay: 1s;"></div>
+            <div class="particle" style="top: 80%; left: 40%; animation-delay: 3s;"></div>
+            <div class="particle" style="top: 40%; left: 60%; animation-delay: 5s;"></div>
+            <div class="particle" style="top: 60%; left: 50%; animation-delay: 0s;"></div>
+            <div class="particle" style="top: 10%; left: 50%; animation-delay: 2s;"></div>
+            <div class="particle" style="top: 30%; left: 70%; animation-delay: 1s;"></div>
+            <div class="particle" style="top: 60%; left: 80%; animation-delay: 3s;"></div>
+        </div>
+
+        <div class="wave wave-1"></div>
+        <div class="wave wave-2"></div>
+        <div class="wave wave-3"></div>
+
+        <!-- Dekorasi lingkaran dengan animasi -->
+        <div class="circle-decoration circle-1"></div>
+        <div class="circle-decoration circle-2"></div>
+    </div>
+
+    <div class="hero-image-container">
+        <img src="{{ row.gambar_slide.url }}" alt="Gedung Bisnis Modern" class="hero-image">
+    </div>
+</div>
+
+{% endfor %}
+<section class="contact">
+    <div class="container">
+        <!-- Section Title -->
+        <div class="section-title">
+            <h2>Hubungi Kami</h2>
+            <p>Kami siap membantu Anda. Hubungi kami melalui informasi kontak di bawah ini atau isi form untuk mengirim
+                pesan langsung.</p>
+        </div>
+        {% for row in kontak  %}
+        <!-- 4 Info Boxes -->
+        <div class="row gy-4 mb-5">
+            <div class="col-lg-3 col-md-6">
+                <div class="info-item">
+                    <i class="bi bi-geo-alt"></i>
+                    <h3>Alamat</h3>
+                    <p>{{ row.alamat }}</p>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="info-item">
+                    <i class="bi bi-telephone"></i>
+                    <h3>Telepon</h3>
+                    <p>{{ row.no_1 }}</p>
+                    <p>{{ row.no_2 }}</p>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="info-item">
+                    <i class="bi bi-envelope"></i>
+                    <h3>Email</h3>
+                    <p>{{ row.email }}</p>
+                    
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="info-item">
+                    <i class="bi bi-clock"></i>
+                    <h3>Jam Operasional</h3>
+                    <p>{{ row.hari }}</p>
+                    <p>{{ row.jam }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+        <!-- Contact Form - Django Form (TIDAK DIUBAH) -->
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <div class="contact-form-wrapper">
+                    <div class="card-header">
+                        <h2 class="card-title text-center">Kirim Pesan</h2>
+                    </div>
+                    <div class="card-body">
+                        <!-- FORM DJANGO - TIDAK ADA YANG DIUBAH -->
+                        <form method="post">
+                           {% csrf_token %} 
+
+                            <div class="form-group mb-3">
+                                <label for="id_nama">Nama</label>
+                                {{ form.nama }} 
+                               
+                                {% if form.nama.errors %}
+                                    <div class="text-danger">
+                                        {{ form.nama.errors }}
+                                    </div>
+                                    {% endif %}
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <label for="id_email">Email</label>
+                                {{ form.email }}
+                                
+                                {% if form.email.errors %}
+                                    <div class="text-danger">
+                                        {{ form.email.errors }}
+                                    </div>
+                                    {% endif %}
+                            </div>
+
+                            <div class="form-group mb-4">
+                                <label for="id_pesan">Pesan</label>
+                                {{ form.pesan }}
+                                
+                                {% if form.pesan.errors %}
+                                    <div class="text-danger">
+                                        {{ form.pesan.errors }}
+                                    </div>
+                                    {% endif %}
+                            </div>
+
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-primari">
+                                    <i class="bi bi-send me-2"></i>Kirim Pesan
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Django Messages - TIDAK DIUBAH -->
+                {% if messages %}
+                    {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }} mt-4">
+                        <i class="bi bi-check-circle me-2"></i>{{ message }}
+                    </div>
+                    {% endfor %}
+                    {% endif %} 
+
+                <!-- Demo Alert -->
+                <div class="alert alert-success mt-4" style="display: none;">
+                    <i class="bi bi-check-circle me-2"></i>Pesan Anda berhasil dikirim! Kami akan segera merespons.
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}

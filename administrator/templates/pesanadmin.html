@@ -1,0 +1,57 @@
+{% extends 'baseadmin.html' %}
+{% load static %}
+{% block content %}
+<div class="container mt-4">
+    <h2>Daftar Pesan</h2>
+    
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-md-6">
+                    <h3>Pesan Masuk</h3>
+                </div>
+                <div class="col-md-6 text-end">
+                    <span class="badge bg-primary">Total: {{ pesan_list.count }}</span>
+                    <span class="badge bg-warning">Belum Dibaca: {{ pesan_list|rejectattr('is_read')|list|length }}</span>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Nama</th>
+                        <th>Email</th>
+                        <th>Tanggal</th>
+                        <th>Status</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for pesan in pesan_list %}
+                    <tr {% if not pesan.is_read %}class="table-warning"{% endif %}>
+                        <td>{{ pesan.nama }}</td>
+                        <td>{{ pesan.email }}</td>
+                        <td>{{ pesan.tanggal_upload|date:"d M Y, H:i" }}</td>
+                        <td>
+                            {% if pesan.is_read %}
+                                <span class="badge bg-success">Dibaca</span>
+                            {% else %}
+                                <span class="badge bg-warning">Belum Dibaca</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <a href="{% url 'administrator:pesan_detail' pesan.slug %}" class="btn btn-sm btn-info">Lihat</a>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="5" class="text-center">Tidak ada pesan</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

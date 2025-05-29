@@ -1,0 +1,158 @@
+{% extends "baseadmin.html" %}
+{% load static %}
+{% load humanize %}
+{% block content %}
+<style>
+    .container {
+        max-width: 1100px;
+        margin: 40px auto;
+        padding: 20px;
+        font-family: Arial, sans-serif;
+    }
+    .card {
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        overflow: hidden;
+    }
+    .card-header {
+        background: #4CAF50;
+        color: white;
+        padding: 16px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .card-header h4 {
+        margin: 0;
+    }
+    .card-header a {
+        background: #fff;
+        color: #4CAF50;
+        padding: 8px 14px;
+        border-radius: 4px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+    .card-header a:hover {
+        background: #45a049;
+        color: white;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 0;
+    }
+    thead {
+        background: #f2f2f2;
+    }
+    th, td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+    tr:hover {
+        background: #f9f9f9;
+    }
+    .badge {
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-size: 0.9em;
+        color: white;
+    }
+    .bg-success {
+        background-color: #28a745;
+    }
+    .bg-danger {
+        background-color: #dc3545;
+    }
+    .action-buttons a {
+        padding: 6px 10px;
+        margin-right: 6px;
+        border-radius: 4px;
+        text-decoration: none;
+        color: white;
+        font-size: 0.85em;
+    }
+    .btn-warning {
+        background: #ffc107;
+    }
+    .btn-danger {
+        background: #dc3545;
+    }
+    img.product-img {
+        max-width: 50px;
+        border-radius: 6px;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+    }
+    @media (max-width: 768px) {
+        .card-header {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        table, thead, tbody, th, td, tr {
+            font-size: 14px;
+        }
+    }
+</style>
+
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h4>Manajemen Produk</h4>
+            <a href="{% url 'formprodukadmin' %}">Tambah Produk</a>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Gambar</th>
+                            <th>Nama</th>
+                            <th>Kategori</th>
+                            <th>Harga</th>
+                            <th>Status</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in produk %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>
+                                {% if item.gambar %}
+                                <img src="{{ item.gambar.url }}" alt="{{ item.nama }}" class="product-img">
+                                {% else %}
+                                <span class="text-muted">No Image</span>
+                                {% endif %}
+                            </td>
+                            <td>{{ item.nama }}</td>
+                            <td>{{ item.kategoripenjualan.nama|default:"Tanpa Kategori" }}</td>
+                            <td>Rp {{ item.harga|intcomma }}</td>
+                            <td>
+                                {% if item.aktif %}
+                                <span class="badge bg-success">Aktif</span>
+                                {% else %}
+                                <span class="badge bg-danger">Tidak Aktif</span>
+                                {% endif %}
+                            </td>
+                            <td class="action-buttons">
+                                <a href="{% url 'editprodukadmin' token=item.token_produk %}" class="btn-warning">Edit</a>
+                                <a href="{% url 'deleteprodukadmin' token=item.token_produk %}" class="btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus produk ini?')">Hapus</a>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="7" style="text-align:center;">Belum ada produk</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

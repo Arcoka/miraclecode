@@ -1,0 +1,294 @@
+{% extends 'baseadmin.html' %}
+{% load static %}
+{% block title %}Kelola Form Upload{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <!-- Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>
+            <i class="fas fa-file-alt me-2"></i>Kelola Form Upload
+        </h2>
+        <div class="btn-group">
+            <a href="{% url 'upload_form' %}" target="_blank" class="btn btn-outline-primary">
+                <i class="fas fa-external-link-alt me-2"></i>Lihat Form Upload
+            </a>
+        </div>
+    </div>
+
+    <!-- Statistics Cards -->
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <div class="card bg-primary text-white">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h6 class="card-title">Total Form</h6>
+                            <h3 class="mb-0">{{ stats.total }}</h3>
+                        </div>
+                        <div class="align-self-center">
+                            <i class="fas fa-file-alt fa-2x opacity-75"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-warning text-white">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h6 class="card-title">Pending</h6>
+                            <h3 class="mb-0">{{ stats.pending }}</h3>
+                        </div>
+                        <div class="align-self-center">
+                            <i class="fas fa-clock fa-2x opacity-75"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-info text-white">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h6 class="card-title">Reviewed</h6>
+                            <h3 class="mb-0">{{ stats.reviewed }}</h3>
+                        </div>
+                        <div class="align-self-center">
+                            <i class="fas fa-eye fa-2x opacity-75"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-success text-white">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h6 class="card-title">Approved</h6>
+                            <h3 class="mb-0">{{ stats.approved }}</h3>
+                        </div>
+                        <div class="align-self-center">
+                            <i class="fas fa-check fa-2x opacity-75"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Filters and Search -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <form method="get" class="row g-3">
+                <div class="col-md-4">
+                    <label class="form-label">Status</label>
+                    <select name="status" class="form-select">
+                        <option value="">Semua Status</option>
+                        {% for value, label in status_choices %}
+                            <option value="{{ value }}" {% if status_filter == value %}selected{% endif %}>
+                                {{ label }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Pencarian</label>
+                    <input type="text" name="search" class="form-control" 
+                           placeholder="Cari berdasarkan judul, nama, atau email..." 
+                           value="{{ search_query|default:'' }}">
+                </div>
+                <div class="col-md-2">
+                    <label class="form-label">&nbsp;</label>
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-search me-2"></i>Filter
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Forms Table -->
+    <div class="card">
+        <div class="card-body">
+            {% if forms %}
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead class="table-light">
+                            <tr>
+                                <th width="25%">Judul Form</th>
+                                <th width="20%">Pengirim</th>
+                                <th width="15%">Status</th>
+                                <th width="15%">Tanggal Upload</th>
+                                <th width="10%">File</th>
+                                <th width="15%">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for form in forms %}
+                                <tr>
+                                    <td>
+                                        <div>
+                                            <strong>{{ form.title|truncatechars:40 }}</strong>
+                                            {% if form.description %}
+                                                <br><small class="text-muted">{{ form.description|truncatechars:60 }}</small>
+                                            {% endif %}
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <strong>{{ form.uploaded_by }}</strong><br>
+                                            <small class="text-muted">{{ form.email }}</small>
+                                            {% if form.phone %}
+                                                <br><small class="text-muted">{{ form.phone }}</small>
+                                            {% endif %}
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="badge 
+                                            {% if form.status == 'pending' %}bg-warning
+                                            {% elif form.status == 'reviewed' %}bg-info
+                                            {% elif form.status == 'approved' %}bg-success
+                                            {% elif form.status == 'rejected' %}bg-danger
+                                            {% endif %}">
+                                            {{ form.get_status_display }}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <small>{{ form.uploaded_at|date:"d M Y" }}<br>{{ form.uploaded_at|time:"H:i" }}</small>
+                                    </td>
+                                    <td>
+                                        {% if form.file %}
+                                            <a href="{{ form.file.url }}" target="_blank" class="btn btn-sm btn-outline-primary">
+                                                <i class="fas fa-download"></i>
+                                            </a>
+                                            <br><small class="text-muted">{{ form.file_size }} MB</small>
+                                        {% else %}
+                                            <span class="text-muted">-</span>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        <div class="btn-group-vertical btn-group-sm">
+                                            <a href="{% url 'admin_form_detail' form.id %}" class="btn btn-outline-primary btn-sm">
+                                                <i class="fas fa-eye me-1"></i>Detail
+                                            </a>
+                                            {% if form.status == 'pending' %}
+                                                <button onclick="quickAction({{ form.id }}, 'approved')" class="btn btn-outline-success btn-sm">
+                                                    <i class="fas fa-check me-1"></i>Setujui
+                                                </button>
+                                                <button onclick="quickAction({{ form.id }}, 'rejected')" class="btn btn-outline-danger btn-sm">
+                                                    <i class="fas fa-times me-1"></i>Tolak
+                                                </button>
+                                            {% endif %}
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Pagination -->
+                {% if forms.has_other_pages %}
+                    <nav aria-label="Page navigation" class="mt-4">
+                        <ul class="pagination justify-content-center">
+                            {% if forms.has_previous %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?page=1{% if search_query %}&search={{ search_query }}{% endif %}{% if status_filter %}&status={{ status_filter }}{% endif %}">
+                                        <i class="fas fa-angle-double-left"></i>
+                                    </a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ forms.previous_page_number }}{% if search_query %}&search={{ search_query }}{% endif %}{% if status_filter %}&status={{ status_filter }}{% endif %}">
+                                        <i class="fas fa-angle-left"></i>
+                                    </a>
+                                </li>
+                            {% endif %}
+
+                            {% for num in forms.paginator.page_range %}
+                                {% if forms.number == num %}
+                                    <li class="page-item active">
+                                        <span class="page-link">{{ num }}</span>
+                                    </li>
+                                {% elif num > forms.number|add:-3 and num < forms.number|add:3 %}
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page={{ num }}{% if search_query %}&search={{ search_query }}{% endif %}{% if status_filter %}&status={{ status_filter }}{% endif %}">{{ num }}</a>
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
+
+                            {% if forms.has_next %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ forms.next_page_number }}{% if search_query %}&search={{ search_query }}{% endif %}{% if status_filter %}&status={{ status_filter }}{% endif %}">
+                                        <i class="fas fa-angle-right"></i>
+                                    </a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ forms.paginator.num_pages }}{% if search_query %}&search={{ search_query }}{% endif %}{% if status_filter %}&status={{ status_filter }}{% endif %}">
+                                        <i class="fas fa-angle-double-right"></i>
+                                    </a>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </nav>
+                {% endif %}
+            {% else %}
+                <div class="text-center py-5">
+                    <i class="fas fa-folder-open fa-3x text-muted mb-3"></i>
+                    <h4 class="text-muted">Tidak ada form ditemukan</h4>
+                    <p class="text-muted">Belum ada form yang diupload atau sesuai dengan filter yang dipilih.</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<!-- Quick Action Script -->
+<script>
+function quickAction(formId, action) {
+    if (!confirm(`Apakah Anda yakin ingin ${action === 'approved' ? 'menyetujui' : 'menolak'} form ini?`)) {
+        return;
+    }
+    
+    const formData = new FormData();
+    formData.append('action', action);
+    formData.append('csrfmiddlewaretoken', '{{ csrf_token }}');
+    
+    fetch(`/admin/forms/${formId}/action/`, {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // Show success message
+            showAlert('success', data.message);
+            // Reload page after short delay
+            setTimeout(() => {
+                location.reload();
+            }, 1000);
+        } else {
+            showAlert('danger', data.error || 'Terjadi kesalahan');
+        }
+    })
+    .catch(error => {
+        showAlert('danger', 'Terjadi kesalahan: ' + error.message);
+    });
+}
+
+function showAlert(type, message) {
+    const alertHtml = `
+        <div class="alert alert-${type} alert-dismissible fade show" role="alert">
+            ${message}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    `;
+    document.querySelector('.container-fluid').insertAdjacentHTML('afterbegin', alertHtml);
+}
+</script>
+{% endblock %}

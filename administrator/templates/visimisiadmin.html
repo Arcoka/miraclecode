@@ -1,0 +1,311 @@
+{% extends "baseadmin.html" %}
+{% load static %}
+{% block content %}
+<div class="overflow-x-auto flex-1 p-6 transition-all duration-200 ease-in-out">
+    <div class="md:hidden flex justify-between items-center bg-gray-800 text-white p-4">
+        <h1 class="text-xl font-bold">{{ judul }}</h1>
+        <button @click="isSidebarOpen = !isSidebarOpen" class="focus:outline-none">
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
+    <header class="mb-8 flex items-center space-x-3">
+        <i class="fas fa-layer-group text-pink-300 text-2xl"></i>
+        <h1 class="text-3xl font-bold text-gray-700">{{ judul }}</h1>
+    </header>
+    
+    <!-- Tab Navigation -->
+    <div class="flex border-b border-gray-200 mb-6">
+        <button class="tab-button px-6 py-3 text-gray-600 hover:text-gray-800 font-medium border-b-2 border-transparent hover:border-blue-500 focus:outline-none focus:border-blue-500 active" data-tab="visi">
+            Visi
+        </button>
+        <button class="tab-button px-6 py-3 text-gray-600 hover:text-gray-800 font-medium border-b-2 border-transparent hover:border-green-500 focus:outline-none focus:border-green-500" data-tab="misi">
+            Misi
+        </button>
+        <button class="tab-button px-6 py-3 text-gray-600 hover:text-gray-800 font-medium border-b-2 border-transparent hover:border-purple-500 focus:outline-none focus:border-purple-500" data-tab="sasaran">
+            Sasaran
+        </button>
+        <button class="tab-button px-6 py-3 text-gray-600 hover:text-gray-800 font-medium border-b-2 border-transparent hover:border-yellow-500 focus:outline-none focus:border-orange-500" data-tab="tujuan">
+            Tujuan
+        </button>
+    </div>
+    
+    <!-- Tab Content -->
+    <div id="visi" class="tab-content">
+        <a href="{% url 'formvisimisiadmin' %}?jenis=visi" class="inline-block bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 mb-4">
+            <i class="fas fa-plus"></i> Tambah Visi
+        </a>
+        
+        <div class="overflow-x-auto bg-white shadow rounded-lg p-6">
+            <table class="table-auto w-full border-collapse border border-gray-300">
+                <thead>
+                    <tr class="bg-gray-200 text-left">
+                        <th class="px-4 py-2 border border-gray-300">No</th>
+                        <th class="px-4 py-2 border border-gray-300">Visi</th>
+                        <th class="px-4 py-2 border border-gray-300">Status</th>
+                        <th class="px-4 py-2 border border-gray-300">Tanggal Upload</th>
+                        <th class="px-4 py-2 border border-gray-300 text-center">Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in visimisi_list %}
+                    {% if item.visi %}
+                    <tr class="hover:bg-gray-100">
+                        <td class="px-4 py-2 border border-gray-300 text-center">{{ forloop.counter }}</td>
+                        <td class="px-4 py-2 border border-gray-300">{{ item.visi|safe }}</td>
+                        <td class="px-4 py-2 border border-gray-300">
+                            {% if item.aktif %}
+                                <span class="text-green-500">Aktif</span>
+                            {% else %}
+                                <span class="text-red-500">Nonaktif</span>
+                            {% endif %}
+                        </td>
+                        <td class="px-4 py-2 border border-gray-300">
+                            {{ item.tanggal_upload|date:"j F Y H:i" }}
+                        </td>
+                        <td class="px-4 py-2 border border-gray-300 text-center">
+                            <a href="{% url 'editvisimisiadmin' item.token_visimisi %}?jenis=visi" 
+                            class="text-blue-500 hover:text-blue-700">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <form action="{% url 'deletevisimisiadmin' item.token_visimisi %}" method="post" class="inline">
+                                {% csrf_token %}
+                                <input type="hidden" name="jenis" value="visi">
+                                <button type="submit" 
+                                        class="text-red-500 hover:text-red-700"
+                                        onclick="return confirm('Apakah Anda yakin ingin menghapus Visi ini?');">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endif %}
+                    {% empty %}
+                    <tr> 
+                        <td colspan="5" class="px-4 py-2 border border-gray-300 text-center">Data Visi tidak tersedia.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="misi" class="tab-content hidden">
+        <a href="{% url 'formvisimisiadmin' %}?jenis=misi" class="inline-block bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 mb-4">
+            <i class="fas fa-plus"></i> Tambah Misi
+        </a>
+        
+        <div class="overflow-x-auto bg-white shadow rounded-lg p-6">
+            <table class="table-auto w-full border-collapse border border-gray-300">
+                <thead>
+                    <tr class="bg-gray-200 text-left">
+                        <th class="px-4 py-2 border border-gray-300">No</th>
+                        <th class="px-4 py-2 border border-gray-300">Misi</th>
+                        <th class="px-4 py-2 border border-gray-300">Status</th>
+                        <th class="px-4 py-2 border border-gray-300">Tanggal Upload</th>
+                        <th class="px-4 py-2 border border-gray-300 text-center">Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in visimisi_list %}
+                    {% if item.misi %}
+                    <tr class="hover:bg-gray-100">
+                        <td class="px-4 py-2 border border-gray-300 text-center">{{ forloop.counter }}</td>
+                        <td class="px-4 py-2 border border-gray-300">{{ item.misi|safe }}</td>
+                        <td class="px-4 py-2 border border-gray-300">
+                            {% if item.aktif %}
+                                <span class="text-green-500">Aktif</span>
+                            {% else %}
+                                <span class="text-red-500">Nonaktif</span>
+                            {% endif %}
+                        </td>
+                        <td class="px-4 py-2 border border-gray-300">
+                            {{ item.tanggal_upload|date:"j F Y H:i" }}
+                        </td>
+                        <td class="px-4 py-2 border border-gray-300 text-center">
+                            <a href="{% url 'editvisimisiadmin' item.token_visimisi %}?jenis=misi" 
+                            class="text-green-500 hover:text-green-700">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <form action="{% url 'deletevisimisiadmin' item.token_visimisi %}" method="post" class="inline">
+                                {% csrf_token %}
+                                <input type="hidden" name="jenis" value="misi">
+                                <button type="submit" 
+                                        class="text-red-500 hover:text-red-700"
+                                        onclick="return confirm('Apakah Anda yakin ingin menghapus Misi ini?');">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endif %}
+                    {% empty %}
+                    <tr> 
+                        <td colspan="5" class="px-4 py-2 border border-gray-300 text-center">Data Misi tidak tersedia.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="sasaran" class="tab-content hidden">
+        <a href="{% url 'formvisimisiadmin' %}?jenis=sasaran" class="inline-block bg-purple-500 text-white px-4 py-2 rounded hover:bg-purple-600 mb-4">
+            <i class="fas fa-plus"></i> Tambah Sasaran
+        </a>
+        
+        <div class="overflow-x-auto bg-white shadow rounded-lg p-6">
+            <table class="table-auto w-full border-collapse border border-gray-300">
+                <thead>
+                    <tr class="bg-gray-200 text-left">
+                        <th class="px-4 py-2 border border-gray-300">No</th>
+                        <th class="px-4 py-2 border border-gray-300">Sasaran</th>
+                        <th class="px-4 py-2 border border-gray-300">Status</th>
+                        <th class="px-4 py-2 border border-gray-300">Tanggal Upload</th>
+                        <th class="px-4 py-2 border border-gray-300 text-center">Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in visimisi_list %}
+                    {% if item.sasaran %}
+                    <tr class="hover:bg-gray-100">
+                        <td class="px-4 py-2 border border-gray-300 text-center">{{ forloop.counter }}</td>
+                        <td class="px-4 py-2 border border-gray-300">{{ item.sasaran|safe }}</td>
+                        <td class="px-4 py-2 border border-gray-300">
+                            {% if item.aktif %}
+                                <span class="text-green-500">Aktif</span>
+                            {% else %}
+                                <span class="text-red-500">Nonaktif</span>
+                            {% endif %}
+                        </td>
+                        <td class="px-4 py-2 border border-gray-300">
+                            {{ item.tanggal_upload|date:"j F Y H:i" }}
+                        </td>
+                        <td class="px-4 py-2 border border-gray-300 text-center">
+                            <a href="{% url 'editvisimisiadmin' item.token_visimisi %}?jenis=sasaran" 
+                            class="text-purple-500 hover:text-purple-700">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <form action="{% url 'deletevisimisiadmin' item.token_visimisi %}" method="post" class="inline">
+                                {% csrf_token %}
+                                <input type="hidden" name="jenis" value="sasaran">
+                                <button type="submit" 
+                                        class="text-red-500 hover:text-red-700"
+                                        onclick="return confirm('Apakah Anda yakin ingin menghapus Sasaran ini?');">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endif %}
+                    {% empty %}
+                    <tr> 
+                        <td colspan="5" class="px-4 py-2 border border-gray-300 text-center">Data Sasaran tidak tersedia.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="tujuan" class="tab-content hidden">
+        <a href="{% url 'formvisimisiadmin' %}?jenis=tujuan" class="inline-block bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600 mb-4">
+            <i class="fas fa-plus"></i> Tambah Tujuan
+        </a>
+        
+        <div class="overflow-x-auto bg-white shadow rounded-lg p-6">
+            <table class="table-auto w-full border-collapse border border-gray-300">
+                <thead>
+                    <tr class="bg-gray-200 text-left">
+                        <th class="px-4 py-2 border border-gray-300">No</th>
+                        <th class="px-4 py-2 border border-gray-300">Tujuan</th>
+                        <th class="px-4 py-2 border border-gray-300">Status</th>
+                        <th class="px-4 py-2 border border-gray-300">Tanggal Upload</th>
+                        <th class="px-4 py-2 border border-gray-300 text-center">Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in visimisi_list %}
+                    {% if item.tujuan %}
+                    <tr class="hover:bg-gray-100">
+                        <td class="px-4 py-2 border border-gray-300 text-center">{{ forloop.counter }}</td>
+                        <td class="px-4 py-2 border border-gray-300">{{ item.tujuan|safe }}</td>
+                        <td class="px-4 py-2 border border-gray-300">
+                            {% if item.aktif %}
+                                <span class="text-green-500">Aktif</span>
+                            {% else %}
+                                <span class="text-red-500">Nonaktif</span>
+                            {% endif %}
+                        </td>
+                        <td class="px-4 py-2 border border-gray-300">
+                            {{ item.tanggal_upload|date:"j F Y H:i" }}
+                        </td>
+                        <td class="px-4 py-2 border border-gray-300 text-center">
+                            <a href="{% url 'editvisimisiadmin' item.token_visimisi %}?jenis=tujuan" 
+                            class="text-orange-500 hover:text-orange-700">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <form action="{% url 'deletevisimisiadmin' item.token_visimisi %}" method="post" class="inline">
+                                {% csrf_token %}
+                                <input type="hidden" name="jenis" value="tujuan">
+                                <button type="submit" 
+                                        class="text-red-500 hover:text-red-700"
+                                        onclick="return confirm('Apakah Anda yakin ingin menghapus Tujuan ini?');">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endif %}
+                    {% empty %}
+                    <tr> 
+                        <td colspan="5" class="px-4 py-2 border border-gray-300 text-center">Data Tujuan tidak tersedia.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const tabButtons = document.querySelectorAll('.tab-button');
+    const tabContents = document.querySelectorAll('.tab-content');
+    
+    tabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const tabId = button.getAttribute('data-tab');
+            
+            // Sembunyikan semua tab
+            tabContents.forEach(content => {
+                content.classList.add('hidden');
+            });
+            
+            // Hilangkan active class dari semua tombol
+            tabButtons.forEach(btn => {
+                btn.classList.remove('active', 'border-blue-500', 'border-green-500', 'border-purple-500', 'border-orange-500');
+                btn.classList.add('border-transparent');
+            });
+            
+            // Tampilkan tab yang aktif
+            document.getElementById(tabId).classList.remove('hidden');
+            
+            // Tambahkan active class ke tombol yang aktif
+            button.classList.add('active');
+            button.classList.remove('border-transparent');
+            
+            // Tambahkan warna border sesuai tab
+            if (tabId === 'visi') {
+                button.classList.add('border-blue-500');
+            } else if (tabId === 'misi') {
+                button.classList.add('border-green-500');
+            } else if (tabId === 'sasaran') {
+                button.classList.add('border-purple-500');
+            } else if (tabId === 'tujuan') {
+                button.classList.add('border-orange-500');
+            }
+        });
+    });
+});
+</script>
+{% endblock content %}

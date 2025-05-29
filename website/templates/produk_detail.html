@@ -1,0 +1,130 @@
+{% extends "base.html" %}
+{% load static %}
+{% block body_class %}index-page{% endblock %}
+{% block content %}
+
+<div class="pdp-container" data-aos="fade-up" data-aos-delay="100">
+        <div class="pdp-wrapper">
+            <div class="pdp-image-box">
+                <div class="pdp-badge">Baru</div>
+                <img src="assets/img/masonry-portfolio/masonry-portfolio-2.jpg" alt="Smartphone XYZ Pro" id="product-img">
+            </div>
+            
+            <div class="pdp-details">
+                <div class="pdp-category">Smartphone</div>
+                <h1 class="pdp-title">Smartphone XYZ Pro</h1>
+                
+                <div class="pdp-rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                    <span style="color:#4a5568; margin-left:5px;">4.5 (128 ulasan)</span>
+                </div>
+                
+                <div class="pdp-price-group">
+                    <div class="pdp-current-price">Rp 4.999.000</div>
+                    <div class="pdp-old-price">Rp 5.999.000</div>
+                    <div class="pdp-discount-tag">-17%</div>
+                </div>
+                
+                <p class="pdp-description">
+                    Smartphone premium dengan kamera 108MP, layar AMOLED 6.7", 
+                    baterai 5000mAh, dan prosesor terbaru untuk pengalaman 
+                    digital tanpa batas.
+                </p>
+                
+                <div class="pdp-features-list">
+                    <div class="pdp-feature-item"><i class="fas fa-microchip"></i> Snapdragon 8 Gen 2</div>
+                    <div class="pdp-feature-item"><i class="fas fa-memory"></i> RAM 12GB</div>
+                    <div class="pdp-feature-item"><i class="fas fa-hdd"></i> 256GB</div>
+                    <div class="pdp-feature-item"><i class="fas fa-battery-full"></i> 5000mAh</div>
+                </div>
+                
+                <div class="pdp-action-buttons">
+                    <div class="pdp-quantity-selector">
+                        <button onclick="if(parseInt(document.getElementById('quantity').value)>1)document.getElementById('quantity').value=parseInt(document.getElementById('quantity').value)-1">-</button>
+                        <input type="text" id="quantity" value="1" readonly>
+                        <button onclick="document.getElementById('quantity').value=parseInt(document.getElementById('quantity').value)+1">+</button>
+                    </div>
+                    
+                    <a href="https://wa.me/+6281234567890" class="pdp-chat-btn">
+                        <i class="fab fa-whatsapp"></i> Chat Penjual
+                    </a>
+                    
+                    <button class="pdp-wishlist-btn">
+                        <i class="far fa-heart"></i>
+                    </button>
+                </div>
+                
+               
+            </div>
+        </div>
+        
+        <div class="pdp-tabs">
+            <!-- Radio buttons (tersembunyi) untuk CSS-only tabs -->
+            <input type="radio" name="tabs" id="tab1" class="tab-radio" checked>
+            <input type="radio" name="tabs" id="tab2" class="tab-radio">
+            <input type="radio" name="tabs" id="tab3" class="tab-radio">
+            
+            <!-- Tab navigation dengan label -->
+            <div class="pdp-tab-nav">
+                <label for="tab1" class="pdp-tab-label tab1-label">Deskripsi</label>
+                <label for="tab2" class="pdp-tab-label tab2-label">Spesifikasi</label>
+                <label for="tab3" class="pdp-tab-label tab3-label">Ulasan</label>
+            </div>
+            
+            <!-- Tab contents -->
+            <div class="pdp-tab-content" id="content1">
+                <p>Smartphone XYZ Pro hadir dengan teknologi terkini untuk memenuhi kebutuhan digital Anda. 
+                Dilengkapi dengan prosesor Snapdragon 8 Gen 2 dan RAM 12GB yang menjamin performa maksimal 
+                untuk gaming dan multitasking.</p>
+                <br>
+                <p>Kamera utama 108MP dengan AI enhancement menghasilkan foto berkualitas profesional dalam 
+                berbagai kondisi pencahayaan. Layar AMOLED 6.7 inch dengan refresh rate 120Hz memberikan 
+                pengalaman visual yang memukau.</p>
+            </div>
+            
+            <div class="pdp-tab-content" id="content2">
+                <ul class="pdp-specs-list">
+                    <li>
+                        <strong>Layar:</strong> AMOLED 6.7", 2K+, 120Hz
+                    </li>
+                    <li>
+                        <strong>Prosesor:</strong> Snapdragon 8 Gen 2, Octa-core
+                    </li>
+                    <li>
+                        <strong>RAM/ROM:</strong> 12GB / 256GB
+                    </li>
+                    <li>
+                        <strong>Kamera:</strong> 108MP (Utama) + 50MP (Ultrawide) + 12MP (Telephoto)
+                    </li>
+                    <li>
+                        <strong>Baterai:</strong> 5000mAh, Fast charging 67W
+                    </li>
+                    <li>
+                        <strong>OS:</strong> Android 14
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="pdp-tab-content" id="content3">
+                <div class="pdp-review-card">
+                    <div class="pdp-review-card-header">
+                        <div class="pdp-reviewer-name">Budi Santoso</div>
+                        <div class="pdp-review-date">12 April 2025</div>
+                    </div>
+                    <div class="pdp-review-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="pdp-review-text">Kamera bagus, baterai tahan lama. Sangat puas!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

@@ -1,0 +1,68 @@
+{% extends "baseadmin.html" %}
+{% load static %}
+{% block content %}
+{% block extra_head %}
+    {{ form.media }}
+{% endblock %}
+<div class="flex-1 p-6 transition-all duration-200 ease-in-out">
+    <header class="mb-8">
+        <h1 class="text-3xl font-bold text-gray-700">Tambah Berita</h1>
+    </header>
+    <div class="bg-white shadow rounded-lg p-6">
+        <form action="" method="post" enctype="multipart/form-data" class="space-y-6">
+            {% csrf_token %}
+            <div class="mb-4">
+                <label for="id_nama" class="block text-gray-700 font-bold mb-2">Kategori</label>
+                {{ form.kategori }}
+            </div>
+
+            <div class="mb-4">
+                <label for="id_nama" class="block text-gray-700 font-bold mb-2">Judul VisiMisi:</label>
+                {{ form.judul }}
+            </div>
+            {% comment %} <div class="mb-4">
+                <label for="id_deskripsi" class="block text-gray-700 font-bold mb-2">Deskripsi:</label>
+                <textarea name="deskripsi" id="id_deskripsi" 
+                        class="form-textarea mt-1 block w-full rounded-md border border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 py-2" 
+                        placeholder="Masukkan deskripsi Berita" rows="4">{{ berita.deskripsi }}
+                    </textarea>
+            </div> {% endcomment %}
+            <div class="mb-4">
+                <label for="deskripsi" class="block text-gray-700 font-bold mb-2"> Deskripsi</label>
+                {{ form.deskripsi|safe }}
+                {{form.media}}
+            </div>
+            
+        
+
+            {% comment %} <div class="mb-4">
+                <label for="id_deskripsi" class="block text-gray-700 font-bold mb-2">Isi Berita:</label>
+                <textarea name="deskripsi" id="id_deskripsi" 
+                        class="form-textarea mt-1 block w-full rounded-md border border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 py-2" 
+                        placeholder="Masukkan isi berita" rows="4">{{berita.isi_berita}}</textarea>
+            </div> {% endcomment %}
+
+
+            <div class="mb-4 flex items-center">
+                <label for="id_aktif" class="text-gray-700 font-bold mr-4">Status Aktif:</label>
+                {{ form.aktif }}
+            </div>
+        
+            <div class="mb-4">
+                <label for="id_banner_satu" class="block text-gray-700 font-bold mb-2">Gambar Berita:</label>
+                {{ form.gambar }}
+            </div>
+        
+            
+        
+            <div class="flex justify-end">
+                <button type="submit" 
+                        class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                    Simpan
+                </button>
+            </div>
+        </form>
+
+    </div>
+</div>
+{% endblock content %}
