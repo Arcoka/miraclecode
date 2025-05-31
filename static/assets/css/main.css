@@ -4642,7 +4642,7 @@ textarea.form-control {
   --light: #f8f9fa;
   --dark: #212529;
   --success: #4CAF50;
-  --card-width: 300px;
+  --card-width: 100px;
   --gap: 20px;
 }
 
@@ -4712,7 +4712,7 @@ textarea.form-control {
   background: white;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  min-height: 350px;
+  min-height: 150px;
   border: 2px solid transparent;
 }
 
