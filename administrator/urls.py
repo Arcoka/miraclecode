@@ -1,6 +1,6 @@
 from django.urls import path 
 from .import views 
-from .views import active_users
+from .views import active_users, admin_hapus_layanan
 from django.contrib import admin
 from django.urls import path, include
 from .admin_panel import admin_panel_site
@@ -111,6 +111,7 @@ urlpatterns = [
     path('daftarlayanan/', views.admin_daftar_layanan, name='admin_daftar_layanan'),
     path('daftarlayanan/<slug:slug>/', views.admin_detail_layanan, name='admin_detail_layanan'),
     path('daftarlayanan/<slug:slug>/update-status/', views.admin_update_status, name='admin_update_status'),
+   
     
     # path('pesan/', views.pesanadmin, name='pesanadmin'),
     # path('form-pesan/', views.formpesanadmin, name='formpesanadmin'),

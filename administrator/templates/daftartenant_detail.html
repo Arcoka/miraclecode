@@ -2,325 +2,295 @@
 {% load static %}
 {% block content %}
 <style>
-    .daftartenant-card {
-        background-color:rgba(212, 211, 211, 0.62);
-        border: none;
-        border-radius: 16px;
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-        padding: 32px;
-        margin-top: 30px;
-        max-width: 800px;
-        margin-left: auto;
-        margin-right: auto;
-        font-family: 'Poppins', 'Segoe UI', sans-serif;
-        position: relative;
-        overflow: hidden;
+    .tenant-detail {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 24px;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     }
     
-    .daftartenant-card::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 8px;
-        background: linear-gradient(90deg, #3498db, #9b59b6);
-    }
-    
-    .daftartenant-card h1 {
-        text-align: center;
-        font-size: 32px;
+    .page-header {
         margin-bottom: 32px;
-        color: #2c3e50;
-        font-weight: 600;
-        position: relative;
-        padding-bottom: 12px;
+        padding-bottom: 16px;
+        border-bottom: 1px solid #e5e7eb;
     }
     
-    .daftartenant-card h1::after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 80px;
-        height: 3px;
-        background: linear-gradient(90deg, #3498db, #9b59b6);
-        border-radius: 3px;
-    }
-    
-    .daftartenant-header {
-        margin-bottom: 24px;
-        background-color: #f8f9fa;
-        border-radius: 12px;
-        padding: 20px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-    }
-    
-    .daftartenant-meta {
-        display: flex;
-        align-items: center;
-        margin-bottom: 15px;
-    }
-    
-    .avatar {
-        width: 60px;
-        height: 60px;
-        border-radius: 50%;
-        background-color: #3498db;
-        color: white;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+    .page-title {
         font-size: 24px;
-        font-weight: bold;
-        margin-right: 15px;
-    }
-    
-    .daftartenant-info {
-        flex: 1;
-    }
-    
-    .daftartenant-info h5 {
-        font-size: 22px;
-        color: #34495e;
-        margin: 0 0 5px 0;
         font-weight: 600;
-    }
-    
-    .daftartenant-info h6 {
-        font-size: 16px;
-        color: #3498db;
+        color: #111827;
         margin: 0;
-        font-weight: 500;
     }
     
-    .timestamp {
+    .tenant-info {
+        background: #f9fafb;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        padding: 24px;
+        margin-bottom: 24px;
+    }
+    
+    .tenant-header {
         display: flex;
         align-items: center;
-        color: #7f8c8d;
-        font-size: 14px;
-        margin-top: 5px;
+        margin-bottom: 12px;
     }
     
-    .timestamp svg {
-        margin-right: 5px;
+    .tenant-avatar {
+        width: 48px;
+        height: 48px;
+        background: #3b82f6;
+        color: white;
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+        font-size: 18px;
+        margin-right: 16px;
+    }
+    
+    .tenant-details h3 {
+        font-size: 18px;
+        font-weight: 600;
+        color: #111827;
+        margin: 0 0 4px 0;
+    }
+    
+    .tenant-email {
+        font-size: 14px;
+        color: #6b7280;
+        margin: 0;
+    }
+    
+    .tenant-meta {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-top: 12px;
+        font-size: 14px;
+        color: #6b7280;
+    }
+    
+    .meta-item {
+        display: flex;
+        align-items: center;
+        gap: 4px;
     }
     
     .status-badge {
         display: inline-flex;
         align-items: center;
-        padding: 4px 12px;
-        border-radius: 30px;
-        font-size: 14px;
+        gap: 4px;
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-size: 12px;
         font-weight: 500;
-        margin-top: 10px;
     }
     
     .status-visible {
-        background-color: #d4f7e7;
-        color: #10b981;
+        background: #d1fae5;
+        color: #065f46;
     }
     
     .status-hidden {
-        background-color: #fce7f3;
-        color: #ec4899;
+        background: #fee2e2;
+        color: #991b1b;
     }
     
-    .daftartenant-content-wrapper {
-        margin-top: 20px;
+    .content-section {
+        margin-bottom: 32px;
     }
     
-    .daftartenant-label {
-        font-size: 18px;
-        font-weight: 600;
-        color: #2c3e50;
-        margin-bottom: 10px;
-        display: flex;
-        align-items: center;
-    }
-    
-    .daftartenant-label svg {
-        margin-right: 8px;
-    }
-    
-    .daftartenant-content {
-        background-color: #f9f9f9;
-        border-left: 4px solid #3498db;
-        padding: 20px;
-        border-radius: 12px;
-        color: #2c3e50;
-        white-space: pre-line;
+    .section-title {
         font-size: 16px;
-        line-height: 1.6;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        font-weight: 600;
+        color: #111827;
+        margin-bottom: 12px;
+    }
+    
+    .content-box {
+        background: #f9fafb;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        padding: 16px;
+        white-space: pre-line;
+        line-height: 1.5;
+        color: #374151;
     }
     
     .actions {
-        margin-top: 30px;
         display: flex;
-        justify-content: space-between;
+        gap: 12px;
         flex-wrap: wrap;
-        gap: 10px;
+        padding-top: 24px;
+        border-top: 1px solid #e5e7eb;
     }
     
     .btn {
         display: inline-flex;
         align-items: center;
-        padding: 12px 24px;
-        border-radius: 8px;
-        text-decoration: none;
-        transition: all 0.3s ease;
+        gap: 8px;
+        padding: 8px 16px;
+        border-radius: 6px;
+        font-size: 14px;
         font-weight: 500;
-        font-size: 16px;
+        text-decoration: none;
         border: none;
         cursor: pointer;
+        transition: all 0.2s;
     }
     
-    .btn svg {
-        margin-right: 8px;
+    .btn-secondary {
+        background: #f3f4f6;
+        color: #374151;
+        border: 1px solid #d1d5db;
     }
     
-    .btn-back {
-        background-color: #f1f2f6;
-        color: #2c3e50;
+    .btn-secondary:hover {
+        background: #e5e7eb;
     }
     
-    .btn-back:hover {
-        background-color: #e3e5e8;
-        transform: translateY(-2px);
-    }
-    
-    .btn-action {
-        background: linear-gradient(90deg, #3498db, #9b59b6);
+    .btn-primary {
+        background: #3b82f6;
         color: white;
     }
     
-    .btn-action:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+    .btn-primary:hover {
+        background: #2563eb;
     }
     
-    .btn-toggle {
-        background-color: #f1f2f6;
-        color: #2c3e50;
+    .btn-success {
+        background: #10b981;
+        color: white;
     }
     
-    .btn-toggle.visible {
-        background-color: #d4f7e7;
-        color: #10b981;
+    .btn-success:hover {
+        background: #059669;
     }
     
-    .btn-toggle.hidden {
-        background-color: #fce7f3;
-        color: #ec4899;
+    .btn-warning {
+        background: #f59e0b;
+        color: white;
     }
     
-    .btn-toggle:hover {
-        transform: translateY(-2px);
+    .btn-warning:hover {
+        background: #d97706;
     }
     
-    .btn-delete {
-        background-color: #fee2e2;
-        color: #ef4444;
+    .btn-danger {
+        background: #ef4444;
+        color: white;
     }
     
-    .btn-delete:hover {
-        background-color: #fecaca;
-        transform: translateY(-2px);
+    .btn-danger:hover {
+        background: #dc2626;
+    }
+    
+    .icon {
+        width: 16px;
+        height: 16px;
     }
     
     @media (max-width: 768px) {
-        .daftartenant-card {
-            padding: 24px;
-            border-radius: 12px;
+        .tenant-detail {
+            margin: 0;
+            border-radius: 0;
+            padding: 16px;
         }
         
-        .daftartenant-meta {
+        .tenant-header {
             flex-direction: column;
             align-items: flex-start;
+            gap: 12px;
         }
         
-        .avatar {
-            margin-bottom: 15px;
+        .tenant-avatar {
+            margin-right: 0;
+        }
+        
+        .tenant-meta {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 8px;
         }
         
         .actions {
             flex-direction: column;
-            gap: 12px;
         }
         
         .btn {
-            width: 100%;
             justify-content: center;
         }
     }
 </style>
 
-<div class="daftartenant-card">
-    <h1>Detail DaftarTenant</h1>
+<div class="tenant-detail">
+    <div class="page-header">
+        <h1 class="page-title">Detail Pendaftaran Tenant</h1>
+    </div>
 
-    <div class="daftartenant-header">
-        <div class="daftartenant-meta">
-            <div class="avatar">
+    <div class="tenant-info">
+        <div class="tenant-header">
+            <div class="tenant-avatar">
                 {{ daftartenant.nama|make_list|first|upper }}
             </div>
-            <div class="daftartenant-info">
-                <h5>{{ daftartenant.nama }}</h5>
-                <h6>{{ daftartenant.email }}</h6>
-                {% comment %} <h6>{{ daftartenant.telepon }}</h6> {% endcomment %}
-                <div class="timestamp">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                        <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
-                        <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
-                    </svg>
-                    {{ daftartenant.tanggal_upload|date:"d M Y, H:i" }}
-                </div>
-                
-                {% if daftartenant.tampil_di_website %}
-                <div class="status-badge status-visible">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="margin-right: 5px;">
-                        <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
-                        <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
-                    </svg>
-                    Ditampilkan di Website
-                </div>
-                {% else %}
-                <div class="status-badge status-hidden">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="margin-right: 5px;">
-                        <path d="m10.79 12.912-1.614-1.615a3.5 3.5 0 0 1-4.474-4.474l-2.06-2.06C.938 6.278 0 8 0 8s3 5.5 8 5.5a7.029 7.029 0 0 0 2.79-.588zM5.21 3.088A7.028 7.028 0 0 1 8 2.5c5 0 8 5.5 8 5.5s-.939 1.721-2.641 3.238l-2.062-2.062a3.5 3.5 0 0 0-4.474-4.474L5.21 3.089z"/>
-                        <path d="M5.525 7.646a2.5 2.5 0 0 0 2.829 2.829l-2.83-2.829zm4.95.708-2.829-2.83a2.5 2.5 0 0 1 2.829 2.829zm3.171 6-12-12 .708-.708 12 12-.708.708z"/>
-                    </svg>
-                    Disembunyikan dari Website
-                </div>
-                {% endif %}
+            <div class="tenant-details">
+                <h3>{{ daftartenant.nama }}</h3>
+                <p class="tenant-email">{{ daftartenant.email }}</p>
             </div>
+        </div>
+        
+        <div class="tenant-meta">
+            <div class="meta-item">
+                <svg class="icon" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
+                </svg>
+                {{ daftartenant.tanggal_upload|date:"d M Y, H:i" }}
+            </div>
+            
+            {% if daftartenant.tampil_di_website %}
+            <div class="status-badge status-visible">
+                <svg class="icon" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/>
+                    <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/>
+                </svg>
+                Ditampilkan di Website
+            </div>
+            {% else %}
+            <div class="status-badge status-hidden">
+                <svg class="icon" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M3.707 2.293a1 1 0 00-1.414 1.414l14 14a1 1 0 001.414-1.414l-1.473-1.473A10.014 10.014 0 0019.542 10C18.268 5.943 14.478 3 10 3a9.958 9.958 0 00-4.512 1.074l-1.78-1.781zm4.261 4.26l1.514 1.515a2.003 2.003 0 012.45 2.45l1.514 1.514a4 4 0 00-5.478-5.478z" clip-rule="evenodd"/>
+                    <path d="M12.454 16.697L9.75 13.992a4 4 0 01-3.742-3.741L2.335 6.578A9.98 9.98 0 00.458 10c1.274 4.057 5.065 7 9.542 7 .847 0 1.669-.105 2.454-.303z"/>
+                </svg>
+                Disembunyikan dari Website
+            </div>
+            {% endif %}
         </div>
     </div>
 
-    <div class="daftartenant-content-wrapper">
-        <div class="daftartenant-label">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
-                <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2zm13 2.383-4.708 2.825L15 11.105V5.383zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741zM1 11.105l4.708-2.897L1 5.383v5.722z"/>
-            </svg>
-            Isi DaftarTenant
-        </div>
-        <div class="daftartenant-content">
+    <div class="content-section">
+        <div class="section-title">Isi Pendaftaran</div>
+        <div class="content-box">
             {{ daftartenant.daftartenant|linebreaksbr }}
         </div>
     </div>
 
     <div class="actions">
-        <a href="{% url 'daftartenant_list' %}" class="btn btn-back">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+        <a href="{% url 'daftartenant_list' %}" class="btn btn-secondary">
+            <svg class="icon" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd"/>
             </svg>
             Kembali
         </a>
         
-        <a href="mailto:{{ daftartenant.email }}" class="btn btn-action">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z"/>
+        <a href="mailto:{{ daftartenant.email }}" class="btn btn-primary">
+            <svg class="icon" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+                <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
             </svg>
             Balas Email
         </a>
@@ -328,29 +298,28 @@
         <form method="POST" action="{% url 'toggle_tampil_di_website' daftartenant.slug %}" style="display: inline;">
             {% csrf_token %}
             <input type="hidden" name="next" value="{% url 'daftartenant_detail' daftartenant.slug %}">
-            <button type="submit" class="btn btn-toggle {% if daftartenant.tampil_di_website %}visible{% else %}hidden{% endif %}">
+            <button type="submit" class="btn {% if daftartenant.tampil_di_website %}btn-warning{% else %}btn-success{% endif %}">
                 {% if daftartenant.tampil_di_website %}
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                    <path d="m10.79 12.912-1.614-1.615a3.5 3.5 0 0 1-4.474-4.474l-2.06-2.06C.938 6.278 0 8 0 8s3 5.5 8 5.5a7.029 7.029 0 0 0 2.79-.588zM5.21 3.088A7.028 7.028 0 0 1 8 2.5c5 0 8 5.5 8 5.5s-.939 1.721-2.641 3.238l-2.062-2.062a3.5 3.5 0 0 0-4.474-4.474L5.21 3.089z"/>
-                    <path d="M5.525 7.646a2.5 2.5 0 0 0 2.829 2.829l-2.83-2.829zm4.95.708-2.829-2.83a2.5 2.5 0 0 1 2.829 2.829zm3.171 6-12-12 .708-.708 12 12-.708.708z"/>
+                <svg class="icon" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M3.707 2.293a1 1 0 00-1.414 1.414l14 14a1 1 0 001.414-1.414l-1.473-1.473A10.014 10.014 0 0019.542 10C18.268 5.943 14.478 3 10 3a9.958 9.958 0 00-4.512 1.074l-1.78-1.781zm4.261 4.26l1.514 1.515a2.003 2.003 0 012.45 2.45l1.514 1.514a4 4 0 00-5.478-5.478z" clip-rule="evenodd"/>
+                    <path d="M12.454 16.697L9.75 13.992a4 4 0 01-3.742-3.741L2.335 6.578A9.98 9.98 0 00.458 10c1.274 4.057 5.065 7 9.542 7 .847 0 1.669-.105 2.454-.303z"/>
                 </svg>
-                Sembunyikan dari Website
+                Sembunyikan
                 {% else %}
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                    <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
-                    <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+                <svg class="icon" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/>
+                    <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/>
                 </svg>
-                Tampilkan di Website
+                Tampilkan
                 {% endif %}
             </button>
         </form>
         
-        <form method="POST" action="{% url 'daftartenant_delete' daftartenant.slug %}" style="display: inline;" onsubmit="return confirm('Apakah Anda yakin ingin menghapus daftartenant ini?');">
+        <form method="POST" action="{% url 'daftartenant_delete' daftartenant.slug %}" style="display: inline;" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?');">
             {% csrf_token %}
-            <button type="submit" class="btn btn-delete">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
-                    <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+            <button type="submit" class="btn btn-danger">
+                <svg class="icon" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"/>
                 </svg>
                 Hapus
             </button>

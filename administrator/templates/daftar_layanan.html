@@ -60,8 +60,10 @@
                 <div class="bg-white bg-opacity-30 p-3 rounded-full">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
                         viewBox="0 0 16 16">
-                        <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
-                        <path d="M6 11.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
+                        <path
+                            d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
+                        <path
+                            d="M6 11.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z" />
                     </svg>
                 </div>
             </div>
@@ -117,9 +119,13 @@
 
     <!-- Tombol Tambah Layanan -->
     <div class="mb-4 flex justify-end">
-        <a href="{% url 'submit_layanan' %}" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg shadow-md transition-all duration-200 flex items-center" target="_blank">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="mr-2" viewBox="0 0 16 16">
-                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+        <a href="{% url 'submit_layanan' %}"
+            class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg shadow-md transition-all duration-200 flex items-center"
+            target="_blank">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="mr-2"
+                viewBox="0 0 16 16">
+                <path
+                    d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
             </svg>
             Buat Layanan Baru
         </a>
@@ -134,29 +140,40 @@
             <table class="min-w-full divide-y divide-gray-200" id="layanan-table">
                 <thead>
                     <tr class="bg-gray-50">
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nama</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Kontak</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Jenis Layanan</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Jenis Produk</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Waktu Layanan</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tanggal Permintaan</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Aksi</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nama
+                        </th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Kontak</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Jenis
+                            Layanan</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Jenis
+                            Produk</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Waktu
+                            Layanan</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Tanggal Permintaan</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Status</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Aksi
+                        </th>
                     </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
                     {% for item in layanan_list %}
                     <tr class="hover:bg-gray-50 layanan-row {% if not item.is_read %}bg-indigo-50{% endif %}"
-                        data-active="{{ item.aktif|lower }}" data-read="{{ item.is_read|lower }}" data-jenis="{{ item.jenislayanan|lower }}">
+                        data-active="{{ item.aktif|lower }}" data-read="{{ item.is_read|lower }}"
+                        data-jenis="{{ item.jenislayanan|lower }}">
                         <td class="px-6 py-4 whitespace-nowrap">
                             <div class="flex items-center">
-                                <div class="flex-shrink-0 h-10 w-10 rounded-full bg-indigo-600 flex items-center justify-center text-white font-bold">
+                                <div
+                                    class="flex-shrink-0 h-10 w-10 rounded-full bg-indigo-600 flex items-center justify-center text-white font-bold">
                                     {{ item.nama|first|upper }}
                                 </div>
                                 <div class="ml-4">
                                     <div class="text-sm font-medium text-gray-900">{{ item.nama }}</div>
                                     {% if not item.is_read %}
-                                    <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-indigo-100 text-indigo-800">
+                                    <span
+                                        class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-indigo-100 text-indigo-800">
                                         Baru
                                     </span>
                                     {% endif %}
@@ -197,7 +214,8 @@
                             <div class="flex flex-col space-y-1">
                                 <span
                                     class="{% if item.is_read %}bg-green-100 text-green-800{% else %}bg-yellow-100 text-yellow-800{% endif %} inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium">
-                                    <svg class="mr-1 h-2 w-2 {% if item.is_read %}text-green-500{% else %}text-yellow-500{% endif %}" fill="currentColor" viewBox="0 0 8 8">
+                                    <svg class="mr-1 h-2 w-2 {% if item.is_read %}text-green-500{% else %}text-yellow-500{% endif %}"
+                                        fill="currentColor" viewBox="0 0 8 8">
                                         <circle cx="4" cy="4" r="3" />
                                     </svg>
                                     {% if item.is_read %}Dibaca{% else %}Belum Dibaca{% endif %}
@@ -205,7 +223,8 @@
 
                                 <span
                                     class="{% if item.aktif %}bg-green-100 text-green-800{% else %}bg-red-100 text-red-800{% endif %} inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium">
-                                    <svg class="mr-1 h-2 w-2 {% if item.aktif %}text-green-500{% else %}text-red-500{% endif %}" fill="currentColor" viewBox="0 0 8 8">
+                                    <svg class="mr-1 h-2 w-2 {% if item.aktif %}text-green-500{% else %}text-red-500{% endif %}"
+                                        fill="currentColor" viewBox="0 0 8 8">
                                         <circle cx="4" cy="4" r="3" />
                                     </svg>
                                     {% if item.aktif %}Aktif{% else %}Tidak Aktif{% endif %}
@@ -217,26 +236,32 @@
                                 <a href="{% url 'admin_detail_layanan' item.slug %}"
                                     class="text-indigo-600 hover:text-indigo-900 bg-indigo-50 hover:bg-indigo-100 rounded-md px-2 py-1 transition-all duration-200">
                                     <i class="fas fa-eye mr-1"></i> Lihat
-                                </a>
-                                <form method="post" action="{% url 'admin_update_status' item.slug %}" style="display: inline;">
+                                </a>                        
+                                {% comment %} <a href="{% url 'admin_hapus_layanan' daftarlayanan.slug %}"
+                                    class="text-red-600 hover:text-red-900 bg-red-50 hover:bg-red-100 rounded-md px-2 py-1 transition-all duration-200"
+                                    onclick="return confirm('Apakah Anda yakin ingin menghapus layanan dari {{ daftarlayanan.nama }}?')">
+                                    <i class="fas fa-trash mr-1"></i> Hapus
+                                </a> {% endcomment %}
+                                <form method="post" action="{% url 'admin_update_status' item.slug %}"
+                                    style="display: inline;">
                                     {% csrf_token %}
                                     {% if item.aktif %}
                                     <input type="hidden" name="status" value="nonaktif">
-                                    <button type="submit" 
+                                    <button type="submit"
                                         class="text-red-600 hover:text-red-900 bg-red-50 hover:bg-red-100 rounded-md px-2 py-1 transition-all duration-200"
                                         onclick="return confirm('Yakin ingin menonaktifkan layanan ini?')">
                                         <i class="fas fa-times-circle mr-1"></i> Nonaktifkan
                                     </button>
                                     {% else %}
                                     <input type="hidden" name="status" value="aktif">
-                                    <button type="submit" 
+                                    <button type="submit"
                                         class="text-green-600 hover:text-green-900 bg-green-50 hover:bg-green-100 rounded-md px-2 py-1 transition-all duration-200"
                                         onclick="return confirm('Yakin ingin mengaktifkan layanan ini?')">
                                         <i class="fas fa-check-circle mr-1"></i> Aktifkan
                                     </button>
                                     {% endif %}
                                 </form>
-                                
+
                             </div>
                         </td>
                     </tr>
@@ -250,7 +275,8 @@
                                         d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
                                 </svg>
                                 <p class="text-lg font-medium">Belum ada permintaan layanan</p>
-                                <p class="text-sm text-gray-500 mt-1">Data permintaan layanan akan muncul di sini setelah
+                                <p class="text-sm text-gray-500 mt-1">Data permintaan layanan akan muncul di sini
+                                    setelah
                                     formulir permintaan diisi.</p>
                             </div>
                         </td>
@@ -301,33 +327,61 @@
 
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
+   function confirmDelete(token, namaLayanan) {
+    // Cek apakah token ada dan tidak kosong
+    if (!token || token.trim() === '') {
+        alert('Error: Data layanan tidak valid');
+        return;
+    }
+    
+    if (confirm('Apakah Anda yakin ingin menghapus layanan dari ' + namaLayanan + '?')) {
+        // Buat form POST untuk penghapusan yang aman
+        const form = document.createElement('form');
+        form.method = 'POST';
+        form.action = '/administrator/daftarlayanan/hapus/' + token + '/';
+        
+        // Tambahkan CSRF token
+        const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]');
+        if (csrfToken) {
+            const csrfInput = document.createElement('input');
+            csrfInput.type = 'hidden';
+            csrfInput.name = 'csrfmiddlewaretoken';
+            csrfInput.value = csrfToken.value;
+            form.appendChild(csrfInput);
+        }
+        
+        document.body.appendChild(form);
+        form.submit();
+    }
+}
+
+    document.addEventListener('DOMContentLoaded', function () {
         // Filter dan pencarian table
         const searchInput = document.getElementById('searchInput');
         const filterStatus = document.getElementById('filterStatus');
         const filterLayanan = document.getElementById('filterLayanan');
         const tableRows = document.querySelectorAll('.layanan-row');
-        
+
         function filterTable() {
             const searchTerm = searchInput.value.trim().toLowerCase();
             const statusFilter = filterStatus.value;
             const layananFilter = filterLayanan.value;
-            
+
             tableRows.forEach(row => {
                 // Skip placeholder row
                 if (row.querySelector('td[colspan]')) return;
-                
+
                 // Get text content for search
                 const rowText = row.textContent.toLowerCase();
-                
+
                 // Get attributes for filtering
                 const isActive = row.dataset.active === 'true';
                 const isRead = row.dataset.read === 'true';
                 const jenisLayanan = row.dataset.jenis;
-                
+
                 // Check for search term match
                 const matchesSearch = searchTerm === '' || rowText.includes(searchTerm);
-                
+
                 // Check for status filter match
                 let matchesStatus = true;
                 if (statusFilter !== 'all') {
@@ -336,18 +390,18 @@
                     if (statusFilter === 'active' && !isActive) matchesStatus = false;
                     if (statusFilter === 'inactive' && isActive) matchesStatus = false;
                 }
-                
+
                 // Check for layanan filter match
                 let matchesLayanan = true;
                 if (layananFilter !== 'all') {
                     matchesLayanan = jenisLayanan === layananFilter.toLowerCase();
                 }
-                
+
                 // Show/hide based on filters
                 row.style.display = (matchesSearch && matchesStatus && matchesLayanan) ? '' : 'none';
             });
         }
-        
+
         // Count active, unread, and this month items for statistics
         function updateStats() {
             let activeCount = 0;
@@ -356,16 +410,16 @@
             const currentDate = new Date();
             const currentMonth = currentDate.getMonth();
             const currentYear = currentDate.getFullYear();
-            
+
             tableRows.forEach(row => {
                 if (row.dataset.active === 'true') {
                     activeCount++;
                 }
-                
+
                 if (row.dataset.read === 'false') {
                     unreadCount++;
                 }
-                
+
                 // Count items from this month
                 const dateCell = row.querySelector('td:nth-child(6)');
                 if (dateCell) {
@@ -373,19 +427,29 @@
                     // Extract date from format "DD MMM YYYY, HH:MM"
                     const dateParts = dateText.split(',')[0].split(' ');
                     const monthNames = {
-                        'Jan': 0, 'Feb': 1, 'Mar': 2, 'Apr': 3, 'Mei': 4, 'Jun': 5,
-                        'Jul': 6, 'Agu': 7, 'Sep': 8, 'Okt': 9, 'Nov': 10, 'Des': 11
+                        'Jan': 0,
+                        'Feb': 1,
+                        'Mar': 2,
+                        'Apr': 3,
+                        'Mei': 4,
+                        'Jun': 5,
+                        'Jul': 6,
+                        'Agu': 7,
+                        'Sep': 8,
+                        'Okt': 9,
+                        'Nov': 10,
+                        'Des': 11
                     };
-                    
+
                     const month = monthNames[dateParts[1]];
                     const year = parseInt(dateParts[2]);
-                    
+
                     if (month === currentMonth && year === currentYear) {
                         thisMonthCount++;
                     }
                 }
             });
-            
+
             // Update stats if needed (uncomment if stats aren't provided by Django context)
             /*
             const activeCountElem = document.querySelector('.from-green-500 h3');
@@ -397,12 +461,12 @@
             if (thisMonthCountElem) thisMonthCountElem.textContent = thisMonthCount;
             */
         }
-        
+
         // Add event listeners
         if (searchInput) searchInput.addEventListener('input', filterTable);
         if (filterStatus) filterStatus.addEventListener('change', filterTable);
         if (filterLayanan) filterLayanan.addEventListener('change', filterTable);
-        
+
         // Initial stats update
         updateStats();
     });

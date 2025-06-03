@@ -609,7 +609,22 @@ def admin_update_status(request, slug):
         
     return redirect(reverse('admin_detail_layanan', kwargs={'slug': layanan.slug}))
 
-
+@login_required
+def admin_hapus_layanan(request, slug):
+    """View admin untuk menghapus layanan"""
+    layanan = get_object_or_404(DaftarLayanan, slug=slug)
+    
+    if request.method == "POST":
+        nama_layanan = layanan.nama  # Simpan nama sebelum dihapus
+        layanan.delete()
+        messages.success(request, f'Layanan dari {nama_layanan} berhasil dihapus')
+        return redirect(reverse('admin_daftar_layanan'))
+    
+    # Jika method GET, tampilkan halaman konfirmasi
+    return render(request, 'konfirmasi_hapus_layanan.html', {
+        'layanan': layanan,
+        'title': f'Hapus Layanan - {layanan.nama}'
+    })
 
 
 ##### INI BAGIAN SLIDE

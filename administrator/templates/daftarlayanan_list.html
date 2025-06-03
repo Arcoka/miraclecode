@@ -211,15 +211,11 @@
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                             <div class="flex space-x-2">
-                                <a href="{% url 'daftarlayanan_detail' daftarlayanan.slug %}"
+                                <a href="{% url 'daftarlayanan_detail'%}"
                                     class="text-indigo-600 hover:text-indigo-900 bg-indigo-50 hover:bg-indigo-100 rounded-md px-2 py-1 transition-all duration-200">
                                     <i class="fas fa-eye mr-1"></i> Lihat
                                 </a>
-                                <button type="button"
-                                    class="text-red-600 hover:text-red-900 bg-red-50 hover:bg-red-100 rounded-md px-2 py-1 transition-all duration-200"
-                                    onclick="confirmDelete('{{ daftarlayanan.slug }}', '{{ daftarlayanan.nama }}')">
-                                    <i class="fas fa-trash-alt mr-1"></i> Hapus
-                                </button>
+                                
                             </div>
                         </td>
                     </tr>

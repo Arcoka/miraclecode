@@ -45,97 +45,65 @@
 
 
 <section class="slide-layanan">
-    <!-- Services Slider Section -->
-<div class="container section-title" style="margin-top: 40px;" data-aos="fade-up">
-    <h2>Daftar Layanan</h2>
-    <p>Club Wirausaha Universitas Nurul Jadid</p>
-</div><!-- End Section Title -->
+    <div class="container section-title" style="margin-top: 60px; margin-bottom: -10px;" data-aos="fade-up">
+        <h2>Daftar Layanan</h2>
+        <p>Layanan Inkubator Bisnis Kami</p>
+    </div><!-- End Section Title -->
     <div class="slider-container">
         <div class="slider-track" id="slider-track">
-            <!-- Original slides -->
-            {% for row in layanan  %}
+            <!-- Original slides from Django -->
+            {% for row in layanan %}
             <div class="slide-lyn">
                 <div class="service-card">
                     <div class="service-card-content">
                         <div class="service-icon">
+                            {% if row.icon %}
+                            <i class="{{ row.icon }}"></i>
+                            {% else %}
                             <i class="fas fa-chart-line"></i>
+                            {% endif %}
                         </div>
                         <h5 class="card-title">{{ row.nama }}</h5>
-                        <p class="card-text">Mentoring dan konsultasi bisnis untuk pengembangan startup dari awal hingga
-                            ekspansi.</p>
+                        <p class="card-text">
+                            {% if row.deskripsi %}
+                            {{ row.deskripsi }}
+                            {% else %}
+                            Mentoring dan konsultasi bisnis untuk pengembangan startup dari awal hingga ekspansi.
+                            {% endif %}
+                        </p>
                     </div>
                 </div>
             </div>
             {% endfor %}
 
-
-            {% comment %} <div class="slide-lyn">
-                <div class="service-card">
-                    <div class="service-card-content">
-                        <div class="service-icon">
-                            <i class="fas fa-hand-holding-usd"></i>
-                        </div>
-                        <h5 class="card-title">Akses ke Investor</h5>
-                        <p class="card-text">Membuka peluang pendanaan dari investor dan venture capital untuk bisnis
-                            yang menjanjikan.</p>
-                    </div>
-                </div>
-            </div>
-
+            <!-- Duplicate slides for infinite scroll effect -->
+            {% comment %} {% for row in layanan %}
             <div class="slide-lyn">
                 <div class="service-card">
                     <div class="service-card-content">
                         <div class="service-icon">
-                            <i class="fas fa-chalkboard-teacher"></i>
+                            {% if row.icon %}
+                            <i class="{{ row.icon }}"></i>
+                            {% else %}
+                            <i class="fas fa-chart-line"></i>
+                            {% endif %}
                         </div>
-                        <h5 class="card-title">Pelatihan & Workshop</h5>
-                        <p class="card-text">Kelas intensif dalam pemasaran digital, manajemen keuangan, dan
-                            pengembangan produk.</p>
+                        <h5 class="card-title">{{ row.nama }}</h5>
+                        <p class="card-text">
+                            {% if row.deskripsi %}
+                            {{ row.deskripsi }}
+                            {% else %}
+                            Mentoring dan konsultasi bisnis untuk pengembangan startup dari awal hingga ekspansi.
+                            {% endif %}
+                        </p>
                     </div>
                 </div>
             </div>
+            {% endfor %} {% endcomment %}
 
+            <!-- Static fallback slides jika data kosong -->
+            {% comment %} {% if not layanan %}
             <div class="slide-lyn">
-                <div class="service-card">
-                    <div class="service-card-content">
-                        <div class="service-icon">
-                            <i class="fas fa-building"></i>
-                        </div>
-                        <h5 class="card-title">Co-Working Space</h5>
-                        <p class="card-text">Ruang kerja nyaman dengan fasilitas internet cepat, ruang meeting, dan area
-                            kreatif.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="slide-lyn">
-                <div class="service-card">
-                    <div class="service-card-content">
-                        <div class="service-icon">
-                            <i class="fas fa-rocket"></i>
-                        </div>
-                        <h5 class="card-title">Program Inkubasi</h5>
-                        <p class="card-text">Seleksi startup untuk pendampingan intensif dan akses ke sumber daya
-                            bisnis.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="slide-lyn">
-                <div class="service-card">
-                    <div class="service-card-content">
-                        <div class="service-icon">
-                            <i class="fas fa-user-graduate"></i>
-                        </div>
-                        <h5 class="card-title">Klub Wirausaha</h5>
-                        <p class="card-text">Program eksklusif bagi mahasiswa untuk mengembangkan potensi dan
-                            berjejaring.</p>
-                    </div>
-                </div>
-            </div> {% endcomment %}
-
-            <!-- Clone slides for infinite scrolling effect -->
-            {% comment %} <div class="slide-lyn">
                 <div class="service-card">
                     <div class="service-card-content">
                         <div class="service-icon">
@@ -211,16 +179,98 @@
                             berjejaring.</p>
                     </div>
                 </div>
-            </div> {% endcomment %}
+            </div>
+
+            <!-- Duplicate static slides -->
+            <div class="slide-lyn">
+                <div class="service-card">
+                    <div class="service-card-content">
+                        <div class="service-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h5 class="card-title">Pendampingan Bisnis</h5>
+                        <p class="card-text">Mentoring dan konsultasi bisnis untuk pengembangan startup dari awal hingga
+                            ekspansi.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide-lyn">
+                <div class="service-card">
+                    <div class="service-card-content">
+                        <div class="service-icon">
+                            <i class="fas fa-hand-holding-usd"></i>
+                        </div>
+                        <h5 class="card-title">Akses ke Investor</h5>
+                        <p class="card-text">Membuka peluang pendanaan dari investor dan venture capital untuk bisnis
+                            yang menjanjikan.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide-lyn">
+                <div class="service-card">
+                    <div class="service-card-content">
+                        <div class="service-icon">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                        </div>
+                        <h5 class="card-title">Pelatihan & Workshop</h5>
+                        <p class="card-text">Kelas intensif dalam pemasaran digital, manajemen keuangan, dan
+                            pengembangan produk.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide-lyn">
+                <div class="service-card">
+                    <div class="service-card-content">
+                        <div class="service-icon">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <h5 class="card-title">Co-Working Space</h5>
+                        <p class="card-text">Ruang kerja nyaman dengan fasilitas internet cepat, ruang meeting, dan area
+                            kreatif.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide-lyn">
+                <div class="service-card">
+                    <div class="service-card-content">
+                        <div class="service-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h5 class="card-title">Program Inkubasi</h5>
+                        <p class="card-text">Seleksi startup untuk pendampingan intensif dan akses ke sumber daya
+                            bisnis.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide-lyn">
+                <div class="service-card">
+                    <div class="service-card-content">
+                        <div class="service-icon">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                        <h5 class="card-title">Klub Wirausaha</h5>
+                        <p class="card-text">Program eksklusif bagi mahasiswa untuk mengembangkan potensi dan
+                            berjejaring.</p>
+                    </div>
+                </div>
+            </div>
+            {% endif %} {% endcomment %}
         </div>
     </div>
 </section>
 
+
+
 <div class="container py-5">
-    <div class="container section-title"  data-aos="fade-up">
-    <h2>Dafta Layanan</h2>
-    <p>Club Wirausaha Universitas Nurul Jadid</p>
-</div><!-- End Section Title -->
+    <div class="container section-title" style="margin-top: 20px; margin-bottom: -10px;" data-aos="fade-up">
+        <h2>Pendaftaran Layanan</h2>
+        <p>Form Untuk Pendaftaran Layanan</p>
+    </div><!-- End Section Title -->
     <div class="row">
         <div class="col-md-8 mx-auto">
             <div class="card shadow">

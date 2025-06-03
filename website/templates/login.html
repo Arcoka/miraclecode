@@ -10,19 +10,40 @@
 </head>
 <body>
 	{% comment %} <h2 class="mt-10">Login Admin Inkubator Bisnis Website</h2> {% endcomment %}
-	<p style="text-align: center; font-size: 18px; font-weight: bold; color: #004080; background: #e0f7ff; padding: 10px; border-radius: 8px; display: inline-block;">💙 
-		<a href="/" style="text-decoration: none; color: #003366; font-weight: bold;">Kembali ke Website Utama</a> 💙
-	</p>
+	<p style="text-align: center; margin: 20px 0;">
+    <a href="/" style="
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 14px 28px;
+        background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+        color: #1e293b;
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: 600;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        border-radius: 10px;
+        border: 1px solid #e2e8f0;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+        letter-spacing: 0.3px;
+    " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 20px rgba(0, 0, 0, 0.15), 0 2px 6px rgba(0, 0, 0, 0.1)'; this.style.borderColor='#cbd5e1';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.05)'; this.style.borderColor='#e2e8f0';">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="transition: transform 0.3s ease;" onmouseover="this.style.transform='translateX(-2px)';" onmouseout="this.style.transform='translateX(0)';">
+            <path d="M19 12H5M12 19l-7-7 7-7"/>
+        </svg>
+        Kembali ke Website Utama
+    </a>
+</p>
 	<div class="container" id="container">
 		<div class="form-container sign-up-container">
 			<form action="#">
-				<h1>Create Account</h1>
+				<h1>Buat Akun</h1>
 				<div class="social-container">
 					<a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
 					<a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
 					<a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
 				</div>
-				<span>or use your email for registration</span>
+				<span>Masukkan Email Untuk Mendaftar</span>
 				<input type="text" placeholder="Name" />
 				<input type="email" placeholder="Email" />
 				<input type="password" placeholder="Password" />
@@ -32,17 +53,17 @@
 		<div class="form-container sign-in-container">
 			<form method="POST" action="{% url 'login' %}">
 				{% csrf_token %}
-				<h1>Sign in</h1>
+				<h1>Log In</h1>
 				<div class="social-container">
 					<a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
 					<a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
 					<a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
 				</div>
-				<span>or use your account</span>
+				<span>Sudah Mempunyai Akun</span>
 				<input type="text" name="username" placeholder="Username" required />
 				<input type="password" name="password" placeholder="Password" required />
-				<a href="#">Forgot your password?</a>
-				<button>Sign In</button>
+				<a href="#">Lupa Password?</a>
+				<button>Log In</button>
 			</form>
 			{% if error %}
 				<p style="color: red;">{{ error }}</p>
@@ -51,15 +72,15 @@
 		<div class="overlay-container">
 			<div class="overlay">
 				<div class="overlay-panel overlay-left">
-					<h1>Welcome Back!</h1>
+					<h1>Selamat Datang Kembali!</h1>
 					<p>
-						To keep connected with us please login with your personal info
+						 Untuk tetap terhubung dengan kami, silakan masuk menggunakan informasi pribadi Anda
 					</p>
 					<button class="ghost" id="signIn">Sign In</button>
 				</div>
 				<div class="overlay-panel overlay-right">
-					<h1>Hello, Friend!</h1>
-					<p>Enter your personal details and start journey with us</p>
+					<h1>Hello, Admin!</h1>
+					<p>Masukkan data pribadi Anda dan mulai perjalanan bersama kami.</p>
 					<button class="ghost" id="signUp">Sign Up</button>
 				</div>
 			</div>
