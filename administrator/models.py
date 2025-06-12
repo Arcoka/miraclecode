@@ -104,17 +104,49 @@ class VisiMisi(models.Model):
     sasaran = RichTextField(max_length=200, blank=True, null=True)
     tujuan = RichTextField(max_length=200, blank=True, null=True)
     aktif = models.BooleanField(default=True)
-    token_visimisi = models.CharField(max_length=300,  blank=True, null=True)
-    tanggal_upload= models.DateTimeField(auto_now_add=True, null=True)
-    slug = models.SlugField(max_length=200, null=True,blank=True, unique=True)
+    token_visimisi = models.CharField(max_length=300, blank=True, null=True)
+    tanggal_upload = models.DateTimeField(auto_now_add=True, null=True)
+    slug = models.SlugField(max_length=200, null=True, blank=True, unique=True)
+    
     class Meta:
         verbose_name_plural = 'Data VisiMisi'
 
-    def save(self, *args, **kwargs):  # new 
-        if not self.slug: 
-            self.slug = slugify(self.visi) 
-        return super().save(*args, **kwargs) 
-
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            # Coba buat slug dari field yang ada (visi, misi, sasaran, tujuan)
+            base_text = None
+            
+            # Prioritas: visi -> misi -> sasaran -> tujuan -> fallback
+            if self.visi:
+                base_text = self.visi
+            elif self.misi:
+                base_text = self.misi
+            elif self.sasaran:
+                base_text = self.sasaran
+            elif self.tujuan:
+                base_text = self.tujuan
+            
+            if base_text:
+                # Bersihkan HTML tags dan ambil 50 karakter pertama
+                import re
+                clean_text = re.sub(r'<[^>]*>', '', str(base_text))
+                base_slug = slugify(clean_text[:50])
+            else:
+                # Fallback jika semua field kosong
+                base_slug = f"visimisi-{uuid.uuid4().hex[:8]}"
+            
+            # Pastikan slug unik
+            slug = base_slug
+            counter = 1
+            
+            while VisiMisi.objects.filter(slug=slug).exists():
+                slug = f"{base_slug}-{counter}"
+                counter += 1
+            
+            self.slug = slug
+        
+        return super().save(*args, **kwargs)
+    
 class Kontak(models.Model):
     alamat = models.CharField(max_length=100,blank=True, null=True)
     no_1 = models.CharField(max_length=20, null=True)

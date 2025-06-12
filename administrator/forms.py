@@ -415,7 +415,7 @@ class PesanForm(forms.ModelForm):
             'pesan': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Tulis pesan Anda di sini', 'rows': 5}),
         }
 
-##### INI BAGIAN PESAN
+##### INI BAGIAN DAFTAR TENANT
 class DaftarTenantForm(forms.ModelForm):
     class Meta:
         model = DaftarTenant
